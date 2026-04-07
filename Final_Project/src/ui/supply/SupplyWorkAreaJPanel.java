@@ -4,16 +4,22 @@
  */
 package ui.supply;
 
+import javax.swing.JPanel;
+import model.UserAccount;
+
 /**
  *
  * @author sashajohnson
  */
 public class SupplyWorkAreaJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private UserAccount account;
     /**
      * Creates new form SupplyWorkAreaJPanel
      */
-    public SupplyWorkAreaJPanel() {
+    public SupplyWorkAreaJPanel(JPanel userProcessContainer1, UserAccount account1) {
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
         initComponents();
     }
 
@@ -26,19 +32,30 @@ public class SupplyWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitle = new javax.swing.JLabel();
+
+        lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblTitle.setText("Supply Manager Dashboard");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(231, 231, 231)
+                .addComponent(lblTitle)
+                .addContainerGap(231, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblTitle)
+                .addContainerGap(437, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

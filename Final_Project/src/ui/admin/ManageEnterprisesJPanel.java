@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.systemAdmin;
+package ui.admin;
 
 /**
  *
  * @author sashajohnson
  */
-public class ManageUsersJPanel extends javax.swing.JPanel {
+public class ManageEnterprisesJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageUsersJPanel
+     * Creates new form ManageEnterprisesJPanel
      */
-    public ManageUsersJPanel() {
+    public ManageEnterprisesJPanel() {
         initComponents();
     }
 

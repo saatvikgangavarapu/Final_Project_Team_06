@@ -3,11 +3,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model.roles;
+import javax.swing.JPanel;
+import model.Role;
+import model.UserAccount;
+import ui.shelter.ShelterWorkAreaJPanel;
 
 /**
  *
  * @author sashajohnson
  */
-public class ShelterManagerRole {
-    
+public class ShelterManagerRole extends Role{
+    @Override
+    public String getRoleName() {
+        return "Shelter Manager";
+    }
+
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
+        return new ShelterWorkAreaJPanel(userProcessContainer, account);
+    }
 }

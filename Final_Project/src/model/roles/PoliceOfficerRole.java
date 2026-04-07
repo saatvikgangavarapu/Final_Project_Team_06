@@ -4,10 +4,23 @@
  */
 package model.roles;
 
+import javax.swing.JPanel;
+import model.Role;
+import model.UserAccount;
+import ui.police.PoliceWorkAreaJPanel;
+
 /**
  *
  * @author sashajohnson
  */
-public class PoliceOfficerRole {
-    
+public class PoliceOfficerRole extends Role {
+    @Override
+    public String getRoleName() {
+        return "Police Officer";
+    }
+
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
+        return new PoliceWorkAreaJPanel(userProcessContainer, account);
+    }
 }

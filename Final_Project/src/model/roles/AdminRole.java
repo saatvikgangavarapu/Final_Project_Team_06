@@ -6,19 +6,20 @@ package model.roles;
 import javax.swing.JPanel;
 import model.Role;
 import model.UserAccount;
-import ui.doctor.DoctorWorkAreaJPanel;
+import ui.admin.SystemAdminWorkAreaJPanel;
+
 /**
  *
  * @author sashajohnson
  */
-public class DoctorRole extends Role{
-        @Override
+public class AdminRole extends Role {
+    @Override
     public String getRoleName() {
-        return "Doctor";
+        return "System Admin";
     }
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new DoctorWorkAreaJPanel(userProcessContainer, account);
+        return new SystemAdminWorkAreaJPanel(userProcessContainer, account);
     }
 }

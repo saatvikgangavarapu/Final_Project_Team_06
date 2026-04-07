@@ -43,6 +43,5 @@ public abstract class Enterprise {
     public String toString() {
         return name;
     }
-    }
 }
 

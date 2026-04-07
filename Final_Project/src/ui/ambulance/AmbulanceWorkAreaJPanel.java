@@ -4,16 +4,22 @@
  */
 package ui.ambulance;
 
+import javax.swing.JPanel;
+import model.UserAccount;
+
 /**
  *
  * @author sashajohnson
  */
 public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private UserAccount account;
     /**
      * Creates new form AmbulanceWorkAreaJPanel
      */
-    public AmbulanceWorkAreaJPanel() {
+    public AmbulanceWorkAreaJPanel(JPanel userProcessContainer1, UserAccount account1) {
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
         initComponents();
     }
 
@@ -26,19 +32,31 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel1.setText("Ambulance Driver Dashboard");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(225, 225, 225)
+                .addComponent(jLabel1)
+                .addContainerGap(224, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(431, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,19 +6,19 @@ package model.roles;
 import javax.swing.JPanel;
 import model.Role;
 import model.UserAccount;
-import ui.doctor.DoctorWorkAreaJPanel;
+import ui.ngo.NGOWorkAreaJPanel;
 /**
  *
  * @author sashajohnson
  */
-public class DoctorRole extends Role{
-        @Override
+public class NGOVolunteerRole extends Role{
+    @Override
     public String getRoleName() {
-        return "Doctor";
+        return "NGO Volunteer";
     }
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new DoctorWorkAreaJPanel(userProcessContainer, account);
-    }
+        return new NGOWorkAreaJPanel(userProcessContainer, account);
+    }    
 }
