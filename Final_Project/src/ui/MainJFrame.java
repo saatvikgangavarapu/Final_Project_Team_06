@@ -3,19 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui;
+import java.awt.CardLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import config.ConfigureSystem;
+import model.EcoSystem;
 
 /**
  *
  * @author sashajohnson
  */
 public class MainJFrame extends javax.swing.JFrame {
+    private JPanel mainContainer;
+    private EcoSystem system;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainJFrame.class.getName());
-
+    
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
+        system = ConfigureSystem.configure();
         initComponents();
     }
 
@@ -28,17 +36,27 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Disaster Response System");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(535, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(437, Short.MAX_VALUE))
         );
 
         pack();
@@ -68,7 +86,14 @@ public class MainJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new MainJFrame().setVisible(true));
     }
+    public JPanel getMainContainer() {
+        return mainContainer;
+    }
 
+    public EcoSystem getSystem() {
+        return system;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

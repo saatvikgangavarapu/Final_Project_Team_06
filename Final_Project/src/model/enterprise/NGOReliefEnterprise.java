@@ -8,6 +8,8 @@ package model.enterprise;
  *
  * @author sashajohnson
  */
-public class NGOReliefEnterprise {
-    
+public class NGOReliefEnterprise extends Enterprise{
+    public NGOReliefEnterprise(String name) {
+        super(name, "NGO & Relief Services");
+    }
 }

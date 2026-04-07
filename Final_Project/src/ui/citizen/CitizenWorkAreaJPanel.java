@@ -4,16 +4,23 @@
  */
 package ui.citizen;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import model.UserAccount;
+
 /**
  *
  * @author sashajohnson
  */
 public class CitizenWorkAreaJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private UserAccount account;
     /**
      * Creates new form CitizenWorkAreaJPanel
      */
-    public CitizenWorkAreaJPanel() {
+    public CitizenWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
         initComponents();
     }
 
@@ -30,11 +37,11 @@ public class CitizenWorkAreaJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 460, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

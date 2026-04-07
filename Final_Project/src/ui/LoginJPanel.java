@@ -3,20 +3,57 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui;
+import java.awt.CardLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import model.EcoSystem;
+import model.UserAccount;
 
 /**
  *
  * @author sashajohnson
  */
 public class LoginJPanel extends javax.swing.JPanel {
+    private EcoSystem system;
+    
+    private JLabel lblTitle;
+    private JLabel lblUsername;
+    private JLabel lblPassword;
+    private JTextField txtUsername;
+    private JPasswordField txtPassword;
+    private JButton btnLogin;
+    private JPanel userProcessContainer;
 
     /**
      * Creates new form LoginJPanel
      */
-    public LoginJPanel() {
+    public LoginJPanel(JPanel userProcessContainer, EcoSystem system) {
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
         initComponents();
     }
+    
+    private void loginAction() {
+        String username = txtUsername.getText().trim();
+        String password = String.valueOf(txtPassword.getPassword());
 
+        UserAccount account = system.authenticateUser(username, password);
+
+        if (account == null) {
+            JOptionPane.showMessageDialog(this, "Invalid username or password.");
+            return;
+        }
+
+        JPanel workArea = account.getRole().createWorkArea(userProcessContainer, account);
+        userProcessContainer.add("WorkArea", workArea);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,11 +67,11 @@ public class LoginJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 460, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
