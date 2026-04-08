@@ -13,13 +13,20 @@ import model.UserAccount;
  * @author sashajohnson
  */
 
-public class ViewMyRequestsJPanel extends javax.swing.JPanel {
+
+    /*
+        you should be able to create any type of request from this panel. 
+        add an option drop down to give the user a choice. 
+        
+    */
+
+public class CreateRequestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
     /**
-     * Creates new form ViewMyRequests
+     * Creates new form CreateEmergencyRequestJPanel
      */
-    public ViewMyRequestsJPanel(JPanel userProcessContainer, UserAccount account) {
+    public CreateRequestJPanel(JPanel userProcessContainer, UserAccount account) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         initComponents();
@@ -42,7 +49,7 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
         lblScreenTitle.setText("Disaster Response System");
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblTitle.setText("My Requests");
+        lblTitle.setText("Create Requests");
 
         btnBack.setBackground(new java.awt.Color(153, 153, 153));
         btnBack.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -65,7 +72,7 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
                         .addComponent(btnBack)
                         .addGap(197, 197, 197)
                         .addComponent(lblTitle)))
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

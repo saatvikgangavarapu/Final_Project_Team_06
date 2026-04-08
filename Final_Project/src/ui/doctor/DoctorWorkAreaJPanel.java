@@ -4,8 +4,12 @@
  */
 package ui.doctor;
 
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.UserAccount;
+import ui.requests.ProcessRequestsJPanel;
+import ui.requests.RequestHistoryJPanel;
+import ui.requests.ViewRequestsJPanel;
 
 /**
  *
@@ -17,7 +21,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    public DoctorWorkAreaJPanel(JPanel userProcessContainer1, UserAccount account1) {
+    public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         initComponents();
@@ -32,35 +36,50 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnViewHistory = new javax.swing.JButton();
+        btnProcessRequest = new javax.swing.JButton();
+        btnViewRequests = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         lblScreenTitle = new javax.swing.JLabel();
+        btnLogOut = new javax.swing.JButton();
 
-        jButton5.setBackground(new java.awt.Color(102, 153, 255));
-        jButton5.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("View History");
-        jButton5.addActionListener(this::jButton5ActionPerformed);
+        btnViewHistory.setBackground(new java.awt.Color(102, 153, 255));
+        btnViewHistory.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnViewHistory.setForeground(new java.awt.Color(255, 255, 255));
+        btnViewHistory.setText("View History");
+        btnViewHistory.setBorderPainted(false);
+        btnViewHistory.setOpaque(true);
+        btnViewHistory.addActionListener(this::btnViewHistoryActionPerformed);
 
-        jButton4.setBackground(new java.awt.Color(102, 153, 255));
-        jButton4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Process Request");
-        jButton4.addActionListener(this::jButton4ActionPerformed);
+        btnProcessRequest.setBackground(new java.awt.Color(102, 153, 255));
+        btnProcessRequest.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnProcessRequest.setForeground(new java.awt.Color(255, 255, 255));
+        btnProcessRequest.setText("Process Request");
+        btnProcessRequest.setBorderPainted(false);
+        btnProcessRequest.setOpaque(true);
+        btnProcessRequest.addActionListener(this::btnProcessRequestActionPerformed);
 
-        jButton1.setBackground(new java.awt.Color(102, 153, 255));
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("View Requests");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnViewRequests.setBackground(new java.awt.Color(102, 153, 255));
+        btnViewRequests.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnViewRequests.setForeground(new java.awt.Color(255, 255, 255));
+        btnViewRequests.setText("View Requests");
+        btnViewRequests.setBorderPainted(false);
+        btnViewRequests.setOpaque(true);
+        btnViewRequests.addActionListener(this::btnViewRequestsActionPerformed);
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblTitle.setText("Doctor Dashboard");
 
         lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblScreenTitle.setText("Disaster Response System");
+
+        btnLogOut.setBackground(new java.awt.Color(153, 153, 153));
+        btnLogOut.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnLogOut.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogOut.setText("Log out");
+        btnLogOut.setBorderPainted(false);
+        btnLogOut.setOpaque(true);
+        btnLogOut.addActionListener(this::btnLogOutActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -72,9 +91,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnViewRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnViewHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnProcessRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblScreenTitle)
@@ -82,42 +101,71 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGap(256, 256, 256)
                                 .addComponent(lblTitle)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addComponent(btnLogOut)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblScreenTitle)
-                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblScreenTitle)
+                    .addComponent(btnLogOut))
+                .addGap(53, 53, 53)
                 .addComponent(lblTitle)
                 .addGap(57, 57, 57)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnViewRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnProcessRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addComponent(btnViewHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnViewHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHistoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        
+        //update this code to specify to show only entries within the current role
+        RequestHistoryJPanel panel = new RequestHistoryJPanel (userProcessContainer, account);
+        userProcessContainer.add("RequestHistoryJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewHistoryActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnProcessRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessRequestActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        //update this code to specify any role specific attributes on the process request page
+        ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
+        userProcessContainer.add("ProcessRequestsJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnProcessRequestActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        //update this code to specify to show only entries within the current role
+        ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
+        userProcessContainer.add("ViewRequestsJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewRequestsActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnProcessRequest;
+    private javax.swing.JButton btnViewHistory;
+    private javax.swing.JButton btnViewRequests;
     private javax.swing.JLabel lblScreenTitle;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables

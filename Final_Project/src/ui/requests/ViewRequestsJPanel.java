@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.citizen;
+package ui.requests;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -12,14 +12,13 @@ import model.UserAccount;
  *
  * @author sashajohnson
  */
-
-public class ViewMyRequestsJPanel extends javax.swing.JPanel {
+public class ViewRequestsJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
     /**
-     * Creates new form ViewMyRequests
+     * Creates new form ViewRequestsJPanel
      */
-    public ViewMyRequestsJPanel(JPanel userProcessContainer, UserAccount account) {
+    public ViewRequestsJPanel(JPanel userProcessContainer, UserAccount account) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         initComponents();
@@ -34,15 +33,15 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblScreenTitle = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
+        lblScreenTitle = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+
+        lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblTitle.setText("View Requests");
 
         lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblScreenTitle.setText("Disaster Response System");
-
-        lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblTitle.setText("My Requests");
 
         btnBack.setBackground(new java.awt.Color(153, 153, 153));
         btnBack.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -59,13 +58,13 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblScreenTitle)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(btnBack)
-                        .addGap(197, 197, 197)
-                        .addComponent(lblTitle)))
-                .addContainerGap(308, Short.MAX_VALUE))
+                        .addGap(194, 194, 194)
+                        .addComponent(lblTitle))
+                    .addComponent(lblScreenTitle))
+                .addContainerGap(295, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,12 +73,12 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
                 .addComponent(lblScreenTitle)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(29, 29, 29)
                         .addComponent(lblTitle))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBack)))
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addContainerGap(382, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

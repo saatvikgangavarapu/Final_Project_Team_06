@@ -1,25 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-package ui.citizen;
+package ui.admin;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.UserAccount;
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+
 /**
  *
  * @author sashajohnson
  */
-
-public class ViewMyRequestsJPanel extends javax.swing.JPanel {
+public class ReportingJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
     /**
-     * Creates new form ViewMyRequests
+     * Creates new form ReportingJPanel
      */
-    public ViewMyRequestsJPanel(JPanel userProcessContainer, UserAccount account) {
+    public ReportingJPanel(JPanel userProcessContainer, UserAccount account) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         initComponents();
@@ -34,15 +34,9 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnBack = new javax.swing.JButton();
         lblScreenTitle = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
-
-        lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
-        lblScreenTitle.setText("Disaster Response System");
-
-        lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblTitle.setText("My Requests");
 
         btnBack.setBackground(new java.awt.Color(153, 153, 153));
         btnBack.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -51,6 +45,12 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
         btnBack.setBorderPainted(false);
         btnBack.setOpaque(true);
         btnBack.addActionListener(this::btnBackActionPerformed);
+
+        lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        lblScreenTitle.setText("Disaster Response System");
+
+        lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblTitle.setText("Manage Reports");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -63,9 +63,9 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(btnBack)
-                        .addGap(197, 197, 197)
+                        .addGap(196, 196, 196)
                         .addComponent(lblTitle)))
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(279, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,7 +84,7 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
