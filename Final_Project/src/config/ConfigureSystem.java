@@ -104,6 +104,9 @@ public class ConfigureSystem {
         Person admin = new Person("P000", "System Admin", 35, "admin@test.com");
         system.getSystemUserAccountDirectory()
                 .createUserAccount("admin", "admin123", admin, new AdminRole());
+        
+        FakerDataGenerator.populate(system);
+
         return system;
     }
 }

@@ -22,7 +22,10 @@ public abstract class Enterprise {
         this.organizationDirectory = new OrganizationDirectory();
         this.userAccountDirectory = new UserAccountDirectory();
     }
-
+    
+    public void setName(String name) {
+        this.name = name;
+    }
     public String getName() {
         return name;
     }

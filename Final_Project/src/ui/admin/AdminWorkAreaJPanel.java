@@ -7,6 +7,7 @@ package ui.admin;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.UserAccount;
+import model.EcoSystem;
 
 /**
  *
@@ -15,6 +16,7 @@ import model.UserAccount;
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
+
     /**
      * Creates new form AdminWorkAreaJPanel
      */
@@ -133,24 +135,26 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsersActionPerformed
         // TODO add your handling code here:
-        ManageUsersJPanel panel = new ManageUsersJPanel (userProcessContainer, account);
-        userProcessContainer.add("ManageUsersJPanel", panel);
+        ManagementJPanel panel = new ManagementJPanel(userProcessContainer, account, "USERS");
+        userProcessContainer.add("ManagementJPanel_USERS", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnUsersActionPerformed
 
     private void btnEnterprisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterprisesActionPerformed
         // TODO add your handling code here:
-        ManageEnterprisesJPanel panel = new ManageEnterprisesJPanel (userProcessContainer, account);
-        userProcessContainer.add("ManageEnterprisesJPanel", panel);
+        
+        ManagementJPanel panel = new ManagementJPanel(userProcessContainer, account, "ENTERPRISES");
+        userProcessContainer.add("ManagementJPanel_ENTERPRISES", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnEnterprisesActionPerformed
 
     private void btnOrganizationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrganizationsActionPerformed
         // TODO add your handling code here:
-        ManageOrganizationsJPanel panel = new ManageOrganizationsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ManageOrganizationsJPanel", panel);
+        ManagementJPanel panel = new ManagementJPanel(userProcessContainer, account, "ORGANIZATIONS");
+        userProcessContainer.add("ManagementJPanel_ORGANIZATIONS", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnOrganizationsActionPerformed
