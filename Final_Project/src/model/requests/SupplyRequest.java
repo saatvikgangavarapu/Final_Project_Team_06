@@ -4,10 +4,12 @@
  */
 package model.requests;
 
+import model.WorkRequest;
+
 /**
  *
  * @author sashajohnson
  */
-public class SupplyRequest {
+public class SupplyRequest extends WorkRequest{
     
 }

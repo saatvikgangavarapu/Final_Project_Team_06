@@ -3,20 +3,34 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ui;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import config.ConfigureSystem;
+import model.EcoSystem;
 
 /**
  *
  * @author sashajohnson
  */
 public class MainJFrame extends javax.swing.JFrame {
+    private EcoSystem system;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainJFrame.class.getName());
-
+    
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
+        system = ConfigureSystem.configure();
         initComponents();
+        setSize(700, 460);
+        setLocationRelativeTo(null);
+        
+        LoginJPanel loginPanel = new LoginJPanel(mainContainerPanel, system);
+        mainContainerPanel.add("LoginJPanel", loginPanel);
+
+        ((CardLayout) mainContainerPanel.getLayout())
+                .show(mainContainerPanel, "LoginJPanel");
     }
 
     /**
@@ -28,18 +42,14 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        mainContainerPanel = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.CardLayout());
+
+        mainContainerPanel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        mainContainerPanel.setLayout(new java.awt.CardLayout());
+        getContentPane().add(mainContainerPanel, "card3");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -68,7 +78,14 @@ public class MainJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new MainJFrame().setVisible(true));
     }
+    public JPanel getMainContainer() {
+        return mainContainerPanel;
+    }
 
+    public EcoSystem getSystem() {
+        return system;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel mainContainerPanel;
     // End of variables declaration//GEN-END:variables
 }

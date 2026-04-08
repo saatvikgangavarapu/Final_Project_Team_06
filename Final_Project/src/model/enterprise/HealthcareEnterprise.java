@@ -8,6 +8,8 @@ package model.enterprise;
  *
  * @author sashajohnson
  */
-public class HealthcareEnterprise {
-    
+public class HealthcareEnterprise extends Enterprise {
+    public HealthcareEnterprise(String name) {
+        super(name, "Healthcare Services");
+    }
 }

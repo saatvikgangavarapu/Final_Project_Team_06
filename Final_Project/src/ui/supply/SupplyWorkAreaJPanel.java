@@ -4,16 +4,26 @@
  */
 package ui.supply;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import model.UserAccount;
+import ui.requests.ProcessRequestsJPanel;
+import ui.requests.RequestHistoryJPanel;
+import ui.requests.ViewRequestsJPanel;
+
 /**
  *
  * @author sashajohnson
  */
 public class SupplyWorkAreaJPanel extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private UserAccount account;
     /**
      * Creates new form SupplyWorkAreaJPanel
      */
-    public SupplyWorkAreaJPanel() {
+    public SupplyWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
         initComponents();
     }
 
@@ -26,19 +36,138 @@ public class SupplyWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnViewHistory = new javax.swing.JButton();
+        btnManageInventory = new javax.swing.JButton();
+        btnViewRequests = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
+        lblScreenTitle = new javax.swing.JLabel();
+        btnLogOut = new javax.swing.JButton();
+
+        btnViewHistory.setBackground(new java.awt.Color(102, 153, 255));
+        btnViewHistory.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnViewHistory.setForeground(new java.awt.Color(255, 255, 255));
+        btnViewHistory.setText("View History");
+        btnViewHistory.setBorderPainted(false);
+        btnViewHistory.setOpaque(true);
+        btnViewHistory.addActionListener(this::btnViewHistoryActionPerformed);
+
+        btnManageInventory.setBackground(new java.awt.Color(102, 153, 255));
+        btnManageInventory.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnManageInventory.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageInventory.setText("Manage Inventory");
+        btnManageInventory.setBorderPainted(false);
+        btnManageInventory.setOpaque(true);
+        btnManageInventory.addActionListener(this::btnManageInventoryActionPerformed);
+
+        btnViewRequests.setBackground(new java.awt.Color(102, 153, 255));
+        btnViewRequests.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnViewRequests.setForeground(new java.awt.Color(255, 255, 255));
+        btnViewRequests.setText("View Requests");
+        btnViewRequests.setBorderPainted(false);
+        btnViewRequests.setOpaque(true);
+        btnViewRequests.addActionListener(this::btnViewRequestsActionPerformed);
+
+        lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblTitle.setText("Supply  Dashboard");
+
+        lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        lblScreenTitle.setText("Disaster Response System");
+
+        btnLogOut.setBackground(new java.awt.Color(153, 153, 153));
+        btnLogOut.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btnLogOut.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogOut.setText("Log out");
+        btnLogOut.setBorderPainted(false);
+        btnLogOut.setOpaque(true);
+        btnLogOut.addActionListener(this::btnLogOutActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(lblScreenTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogOut))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(207, 207, 207)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnViewRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnViewHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnManageInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(261, 261, 261)
+                                .addComponent(lblTitle)))
+                        .addGap(0, 196, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblScreenTitle)
+                    .addComponent(btnLogOut))
+                .addGap(56, 56, 56)
+                .addComponent(lblTitle)
+                .addGap(54, 54, 54)
+                .addComponent(btnViewRequests, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(btnManageInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnViewHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnViewHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHistoryActionPerformed
+        // TODO add your handling code here:
+        
+        //update this code to specify to show only entries within the current role
+        RequestHistoryJPanel panel = new RequestHistoryJPanel (userProcessContainer, account);
+        userProcessContainer.add("RequestHistoryJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewHistoryActionPerformed
+
+    private void btnManageInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageInventoryActionPerformed
+        // TODO add your handling code here:
+        //update this code to specify any role specific attributes on the process request page
+        ManageInventoryJPanel panel = new ManageInventoryJPanel (userProcessContainer, account);
+        userProcessContainer.add("ManageInventoryJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_btnManageInventoryActionPerformed
+
+    private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed
+        // TODO add your handling code here:
+        ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
+        userProcessContainer.add("ViewRequestsJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_btnViewRequestsActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_btnLogOutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnManageInventory;
+    private javax.swing.JButton btnViewHistory;
+    private javax.swing.JButton btnViewRequests;
+    private javax.swing.JLabel lblScreenTitle;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

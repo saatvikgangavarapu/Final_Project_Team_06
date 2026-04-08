@@ -8,6 +8,8 @@ package model.organization;
  *
  * @author sashajohnson
  */
-public class AmbulanceOrganization {
-    
+public class AmbulanceOrganization extends Organization{
+    public AmbulanceOrganization() {
+        super("Ambulance Services");
+    }
 }

@@ -8,6 +8,8 @@ package model.organization;
  *
  * @author sashajohnson
  */
-public class FoodSupplyOrganization {
-    
+public class FoodSupplyOrganization extends Organization{
+    public FoodSupplyOrganization() {
+        super("Food Supply");
+    }
 }

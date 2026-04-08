@@ -8,6 +8,8 @@ package model.enterprise;
  *
  * @author sashajohnson
  */
-public class GovernmentEmergencyEnterprise {
-    
+public class GovernmentEmergencyEnterprise extends Enterprise {
+    public GovernmentEmergencyEnterprise(String name) {
+        super(name, "Government Emergency Services");
+    }
 }
