@@ -56,7 +56,7 @@ public class ReportingJPanel extends javax.swing.JPanel {
 
             String requestId = String.valueOf(tblReports.getValueAt(selectedRow, 0));
 
-            for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
+            for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
                 for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                     for (model.WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
                         if (requestId.equals(request.getRequestId())) {
@@ -78,7 +78,7 @@ public class ReportingJPanel extends javax.swing.JPanel {
         int inProgress = 0;
         int completed = 0;
 
-        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
+        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
             for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 for (model.WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
                     total++;
@@ -106,7 +106,7 @@ public class ReportingJPanel extends javax.swing.JPanel {
 
     model.setRowCount(0);
 
-    for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
+    for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
         for (model.organization.Organization org :
                 enterprise.getOrganizationDirectory().getOrganizationList()) {
 
