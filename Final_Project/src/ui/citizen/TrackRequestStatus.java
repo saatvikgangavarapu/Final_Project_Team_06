@@ -5,16 +5,21 @@
 package ui.citizen;
 
 import java.awt.CardLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import model.UserAccount;
+import model.WorkRequest;
 
 /**
  *
- * @author sashajohnson
+ * @author TanviModi
  */
 public class TrackRequestStatus extends javax.swing.JPanel {
+
     private JPanel userProcessContainer;
     private UserAccount account;
+
     /**
      * Creates new form TrackRequestStatus
      */
@@ -22,6 +27,10 @@ public class TrackRequestStatus extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         initComponents();
+        initUI();
+        populateTable();
+
+        tblRequests.getSelectionModel().addListSelectionListener(e -> showDetails());
     }
 
     /**
@@ -35,7 +44,14 @@ public class TrackRequestStatus extends javax.swing.JPanel {
 
         lblScreenTitle = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblRequests = new javax.swing.JTable();
+        lblDetails = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
+        lblPriority = new javax.swing.JLabel();
+        lblCreatedDate = new javax.swing.JLabel();
+        lblResolvedDate = new javax.swing.JLabel();
+        lblAssignedTo = new javax.swing.JLabel();
 
         lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblScreenTitle.setText("Disaster Response System");
@@ -43,27 +59,56 @@ public class TrackRequestStatus extends javax.swing.JPanel {
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblTitle.setText("Track Requests");
 
-        btnBack.setBackground(new java.awt.Color(153, 153, 153));
-        btnBack.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack.setText("< Back");
-        btnBack.setBorderPainted(false);
-        btnBack.setOpaque(true);
-        btnBack.addActionListener(this::btnBackActionPerformed);
+        tblRequests.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Reqyest Type", "Message", "Status", "Assigned to"
+            }
+        ));
+        jScrollPane1.setViewportView(tblRequests);
+
+        lblDetails.setText("Selected Request Details");
+
+        lblStatus.setText("Status");
+
+        lblPriority.setText("Priority");
+
+        lblCreatedDate.setText("Created Date");
+
+        lblResolvedDate.setText("Resolved Date");
+
+        lblAssignedTo.setText("Assigned To");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblScreenTitle)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnBack)
-                        .addGap(197, 197, 197)
-                        .addComponent(lblTitle)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblScreenTitle)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(276, 276, 276)
+                                .addComponent(lblTitle))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDetails)
+                            .addComponent(lblStatus)
+                            .addComponent(lblPriority)
+                            .addComponent(lblCreatedDate)
+                            .addComponent(lblResolvedDate)
+                            .addComponent(lblAssignedTo)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(285, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -71,28 +116,89 @@ public class TrackRequestStatus extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblScreenTitle)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lblTitle))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBack)))
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(lblTitle)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(lblDetails)
+                .addGap(18, 18, 18)
+                .addComponent(lblStatus)
+                .addGap(18, 18, 18)
+                .addComponent(lblPriority)
+                .addGap(18, 18, 18)
+                .addComponent(lblCreatedDate)
+                .addGap(18, 18, 18)
+                .addComponent(lblResolvedDate)
+                .addGap(18, 18, 18)
+                .addComponent(lblAssignedTo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAssignedTo;
+    private javax.swing.JLabel lblCreatedDate;
+    private javax.swing.JLabel lblDetails;
+    private javax.swing.JLabel lblPriority;
+    private javax.swing.JLabel lblResolvedDate;
     private javax.swing.JLabel lblScreenTitle;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTable tblRequests;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+
+        DefaultTableModel model = (DefaultTableModel) tblRequests.getModel();
+        model.setRowCount(0);
+
+        for (WorkRequest req : account.getWorkQueue().getWorkRequestList()) {
+
+            Object[] row = new Object[5];
+            row[0] = req.getRequestId();
+            row[1] = req.getRequestType();
+            row[2] = req.getMessage();
+            row[3] = req.getStatus();
+            row[4] = (req.getReceiver() == null) ? "Not Assigned" : req.getReceiver().getUsername();
+
+            model.addRow(row);
+        }
+    }
+
+    private void showDetails() {
+
+        int selectedRow = tblRequests.getSelectedRow();
+
+        if (selectedRow < 0) {
+            return;
+        }
+
+        WorkRequest req = account.getWorkQueue().getWorkRequestList().get(selectedRow);
+
+        lblStatus.setText("Status: " + req.getStatus());
+        lblPriority.setText("Priority: " + req.getPriority());
+        lblCreatedDate.setText("Created: " + req.getCreatedDate());
+        lblResolvedDate.setText("Resolved: " + req.getResolvedDate());
+
+        String assigned = (req.getReceiver() == null) ? "Not Assigned" : req.getReceiver().getUsername();
+        lblAssignedTo.setText("Assigned To: " + assigned);
+    }
+
+    private void initUI() {
+
+        JButton btnBack = new JButton("< Back");
+        btnBack.setBounds(30, 35, 80, 25);
+
+        // Action Listener
+        btnBack.addActionListener(e -> {
+            userProcessContainer.remove(this);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.previous(userProcessContainer);
+        });
+
+        add(btnBack);
+    }
 }

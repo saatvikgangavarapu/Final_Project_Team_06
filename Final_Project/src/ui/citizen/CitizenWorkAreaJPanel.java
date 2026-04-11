@@ -6,6 +6,7 @@ package ui.citizen;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import model.Network;
 import model.UserAccount;
 
 /**
@@ -15,12 +16,14 @@ import model.UserAccount;
 public class CitizenWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
+    private Network network;
     /**
      * Creates new form CitizenWorkAreaJPanel
      */
-    public CitizenWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
+    public CitizenWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Network network) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.network = network;
         initComponents();
     }
 
@@ -139,7 +142,7 @@ public class CitizenWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnRaiseRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaiseRequestActionPerformed
         // TODO add your handling code here:
-        CreateRequestJPanel panel = new CreateRequestJPanel(userProcessContainer, account);
+        CreateRequestJPanel panel = new CreateRequestJPanel(userProcessContainer, account, network);
         userProcessContainer.add("CreateEmergencyRequestJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
