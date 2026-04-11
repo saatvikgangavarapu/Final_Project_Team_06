@@ -4,7 +4,6 @@
  */
 package model.roles;
 import javax.swing.JPanel;
-import model.Network;
 import model.Role;
 import model.UserAccount;
 import ui.supply.SupplyWorkAreaJPanel;
@@ -19,7 +18,7 @@ public class SupplyManagerRole extends Role{
     }
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
         return new SupplyWorkAreaJPanel(userProcessContainer, account);
     }
 }
