@@ -7,7 +7,8 @@ package ui.doctor;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.UserAccount;
-import ui.requests.ProcessRequestsJPanel;
+import model.organization.Organization;
+import ui.ambulance.AmbulanceProcessRequestsJPanel;
 import ui.requests.RequestHistoryJPanel;
 import ui.requests.ViewRequestsJPanel;
 
@@ -18,12 +19,15 @@ import ui.requests.ViewRequestsJPanel;
 public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
+    private Organization org;
+
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
     public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.org = org;
         initComponents();
     }
 
@@ -137,8 +141,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private void btnProcessRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessRequestActionPerformed
         // TODO add your handling code here:
         //update this code to specify any role specific attributes on the process request page
-        ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ProcessRequestsJPanel", panel);
+        DoctorProcessRequestsJPanel panel = new DoctorProcessRequestsJPanel (userProcessContainer, account, org);
+        userProcessContainer.add("DoctorProcessRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnProcessRequestActionPerformed
@@ -147,8 +151,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         //update this code to specify to show only entries within the current role
-        ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ViewRequestsJPanel", panel);
+        DoctorViewRequestJPanel panel = new DoctorViewRequestJPanel (userProcessContainer, org);
+        userProcessContainer.add("DoctorViewRequestJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewRequestsActionPerformed

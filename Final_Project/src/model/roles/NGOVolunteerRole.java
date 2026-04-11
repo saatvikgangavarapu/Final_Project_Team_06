@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import model.Role;
 import model.UserAccount;
 import ui.ngo.NGOWorkAreaJPanel;
+import model.Network;
 /**
  *
  * @author sashajohnson
@@ -18,7 +19,7 @@ public class NGOVolunteerRole extends Role{
     }
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
+        public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network) {
         return new NGOWorkAreaJPanel(userProcessContainer, account);
     }    
 }

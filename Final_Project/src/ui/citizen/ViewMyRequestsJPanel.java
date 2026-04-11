@@ -5,8 +5,11 @@
 package ui.citizen;
 
 import java.awt.CardLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import model.UserAccount;
+import model.WorkRequest;
 
 /**
  *
@@ -23,6 +26,7 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         initComponents();
+        populateTable();
     }
 
     /**
@@ -37,6 +41,8 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
         lblScreenTitle = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblRequests = new javax.swing.JTable();
 
         lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblScreenTitle.setText("Disaster Response System");
@@ -52,6 +58,19 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
         btnBack.setOpaque(true);
         btnBack.addActionListener(this::btnBackActionPerformed);
 
+        tblRequests.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblRequests);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,6 +85,11 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
                         .addGap(197, 197, 197)
                         .addComponent(lblTitle)))
                 .addContainerGap(308, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(124, 124, 124)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(124, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,6 +104,11 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBack)))
                 .addContainerGap(380, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(114, 114, 114)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(115, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -91,9 +120,29 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblScreenTitle;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTable tblRequests;
     // End of variables declaration//GEN-END:variables
+    private void populateTable() {
+
+        DefaultTableModel model = (DefaultTableModel) tblRequests.getModel();
+        model.setRowCount(0);
+
+        for (WorkRequest req : account.getWorkQueue().getWorkRequestList()) {
+
+            Object[] row = new Object[6];
+            row[0] = req.getRequestId();
+            row[1] = req.getRequestType();
+            row[2] = req.getMessage();
+            row[3] = req.getStatus();
+            row[4] = req.getPriority();
+
+            model.addRow(row);
+        }
+    }
 }

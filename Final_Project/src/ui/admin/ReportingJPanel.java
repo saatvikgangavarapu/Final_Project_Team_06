@@ -56,8 +56,7 @@ public class ReportingJPanel extends javax.swing.JPanel {
 
             String requestId = String.valueOf(tblReports.getValueAt(selectedRow, 0));
 
-            for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
-                for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {                for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                     for (model.WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
                         if (requestId.equals(request.getRequestId())) {
                             return request;
@@ -78,8 +77,7 @@ public class ReportingJPanel extends javax.swing.JPanel {
         int inProgress = 0;
         int completed = 0;
 
-        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
-            for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {            for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 for (model.WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
                     total++;
 
@@ -101,13 +99,9 @@ public class ReportingJPanel extends javax.swing.JPanel {
     }
     
     private void populateTable() {
-        javax.swing.table.DefaultTableModel model =
-            (javax.swing.table.DefaultTableModel) tblReports.getModel();
-
-    model.setRowCount(0);
-
-    for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
-        for (model.organization.Organization org :
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblReports.getModel();
+        model.setRowCount(0);
+    for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {        for (model.organization.Organization org :
                 enterprise.getOrganizationDirectory().getOrganizationList()) {
 
             for (model.WorkRequest request :
@@ -118,13 +112,10 @@ public class ReportingJPanel extends javax.swing.JPanel {
                 row[0] = request.getRequestId();
                 row[1] = request.getClass().getSimpleName();
                 row[2] = request.getSender() != null
-                        ? request.getSender().getUsername()
-                        : "";
-
+                        ? request.getSender().getUsername() : "";
                 row[3] = request.getStatus();
                 row[4] = request.getPriority();
                 row[5] = org.getName();
-
                 model.addRow(row);
             }
         }

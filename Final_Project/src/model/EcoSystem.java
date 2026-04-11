@@ -14,12 +14,12 @@ import model.enterprise.Enterprise;
 public class EcoSystem {
     private static EcoSystem system;
     private String networkName;
-    private ArrayList<Enterprise> enterpriseList;
     private UserAccountDirectory systemUserAccountDirectory;
-    
+    private Network network;
+        
     private EcoSystem() {
         networkName = "Disaster Management Network";
-        enterpriseList = new ArrayList<>();
+        network = new Network();
         systemUserAccountDirectory = new UserAccountDirectory();
     }
 
@@ -30,16 +30,12 @@ public class EcoSystem {
         return system;
     }
 
+    public Network getNetwork() {
+        return network;
+    }
+
     public String getNetworkName() {
         return networkName;
-    }
-
-    public ArrayList<Enterprise> getEnterpriseList() {
-        return enterpriseList;
-    }
-
-    public void addEnterprise(Enterprise enterprise) {
-        enterpriseList.add(enterprise);
     }
 
     public UserAccountDirectory getSystemUserAccountDirectory() {
@@ -52,7 +48,7 @@ public class EcoSystem {
             return account;
         }
 
-        for (Enterprise enterprise : enterpriseList) {
+        for (Enterprise enterprise : network.getEnterpriseList()) {
             account = enterprise.getUserAccountDirectory().authenticateUser(username, password);
             if (account != null) {
                 return account;

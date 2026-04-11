@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import model.Role;
 import model.UserAccount;
 import ui.admin.AdminWorkAreaJPanel;
+import model.Network;
 
 /**
  *
@@ -19,7 +20,7 @@ public class AdminRole extends Role {
     }
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
+        public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network) {
         return new AdminWorkAreaJPanel(userProcessContainer, account);
     }
 }

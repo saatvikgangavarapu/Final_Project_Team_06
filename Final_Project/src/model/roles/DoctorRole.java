@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import model.Role;
 import model.UserAccount;
 import ui.doctor.DoctorWorkAreaJPanel;
+import model.Network;
+import model.Network;
 /**
  *
  * @author sashajohnson
@@ -18,7 +20,7 @@ public class DoctorRole extends Role{
     }
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network) {
         return new DoctorWorkAreaJPanel(userProcessContainer, account);
     }
 }

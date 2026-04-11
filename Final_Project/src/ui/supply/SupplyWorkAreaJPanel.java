@@ -7,7 +7,7 @@ package ui.supply;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.UserAccount;
-import ui.requests.ProcessRequestsJPanel;
+import ui.ambulance.AmbulanceProcessRequestsJPanel;
 import ui.requests.RequestHistoryJPanel;
 import ui.requests.ViewRequestsJPanel;
 

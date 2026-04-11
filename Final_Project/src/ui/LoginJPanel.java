@@ -12,21 +12,22 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import model.EcoSystem;
 import model.UserAccount;
-
+import model.Network;
 /**
  *
  * @author sashajohnson
  */
 public class LoginJPanel extends javax.swing.JPanel {
     private EcoSystem system;
-    
+    private Network network;
     private JPanel userProcessContainer;
     /**
      * Creates new form LoginJPanel
      */
-    public LoginJPanel(JPanel userProcessContainer, EcoSystem system) {
+    public LoginJPanel(JPanel userProcessContainer, EcoSystem system, Network network) {
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.network = network;
         initComponents();
         
         
@@ -43,8 +44,7 @@ public class LoginJPanel extends javax.swing.JPanel {
             return;
         }
 
-        JPanel workArea = account.getRole().createWorkArea(userProcessContainer, account);
-        userProcessContainer.add("WorkArea", workArea);
+        JPanel workArea = account.getRole().createWorkArea(userProcessContainer, account, network);        userProcessContainer.add("WorkArea", workArea);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

@@ -5,8 +5,17 @@
 package ui.citizen;
 
 import java.awt.CardLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import model.Network;
 import model.UserAccount;
+import model.WorkRequest;
+import model.enterprise.Enterprise;
+import model.organization.FireDepartmentOrganization;
+import model.organization.FoodSupplyOrganization;
+import model.organization.HospitalOrganization;
+import model.organization.Organization;
+import model.organization.PoliceOrganization;
 
 /**
  *
@@ -23,12 +32,14 @@ import model.UserAccount;
 public class CreateRequestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
+    private Network network;
     /**
      * Creates new form CreateEmergencyRequestJPanel
      */
-    public CreateRequestJPanel(JPanel userProcessContainer, UserAccount account) {
+    public CreateRequestJPanel(JPanel userProcessContainer, UserAccount account, Network network) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.network = network;
         initComponents();
     }
 

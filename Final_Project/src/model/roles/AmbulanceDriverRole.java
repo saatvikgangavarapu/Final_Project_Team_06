@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import model.Role;
 import model.UserAccount;
 import ui.ambulance.AmbulanceWorkAreaJPanel;
+import model.Network;
 /**
  *
  * @author sashajohnson
@@ -17,9 +18,9 @@ public class AmbulanceDriverRole extends Role{
     public String getRoleName() {
         return "Ambulance Driver";
     }
-
+    
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new AmbulanceWorkAreaJPanel(userProcessContainer, account);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network) {
+        return new AmbulanceWorkAreaJPanel(userProcessContainer, account, network);
     }    
 }

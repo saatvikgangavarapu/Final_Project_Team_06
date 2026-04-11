@@ -20,7 +20,17 @@ public class WorkRequest {
     private Date createdDate;
     private Date resolvedDate;
     
-     public WorkRequest() {
+    private String requestType;
+
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
+    }
+
+    public WorkRequest() {
         this.createdDate = new Date();
     }
 

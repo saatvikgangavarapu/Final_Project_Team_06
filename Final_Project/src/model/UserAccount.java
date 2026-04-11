@@ -13,12 +13,18 @@ public class UserAccount {
     private String password;
     private Person person;
     private Role role;
+    private WorkQueue workQueue;
 
     public UserAccount(String username, String password, Person person, Role role) {
         this.username = username;
         this.password = password;
         this.person = person;
         this.role = role;
+        this.workQueue = new WorkQueue();
+    }
+    
+    public WorkQueue getWorkQueue() {
+        return workQueue;
     }
 
     public String getUsername() {

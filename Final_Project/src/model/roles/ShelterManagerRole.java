@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import model.Role;
 import model.UserAccount;
 import ui.shelter.ShelterWorkAreaJPanel;
+import model.Network;
 
 /**
  *
@@ -19,7 +20,7 @@ public class ShelterManagerRole extends Role{
     }
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network) {
         return new ShelterWorkAreaJPanel(userProcessContainer, account);
     }
 }

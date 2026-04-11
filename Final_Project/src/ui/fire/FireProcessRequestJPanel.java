@@ -2,31 +2,34 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.citizen;
-
+package ui.fire;
 import java.awt.CardLayout;
-import javax.swing.JButton;
+import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.UserAccount;
 import model.WorkRequest;
+import model.organization.Organization;
 
 /**
  *
  * @author sashajohnson
  */
-public class TrackRequestStatus extends javax.swing.JPanel {
+public class FireProcessRequestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
+    private Organization org;
     /**
-     * Creates new form TrackRequestStatus
+     * Creates new form FireProcessRequestJPanel
      */
-    public TrackRequestStatus(JPanel userProcessContainer, UserAccount account) {
+    public FireProcessRequestJPanel(JPanel userProcessContainer, UserAccount account, Organization org) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.org = org;
         initComponents();
         populateTable();
     }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,17 +40,14 @@ public class TrackRequestStatus extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblScreenTitle = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        lblScreenTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblRequests = new javax.swing.JTable();
-
-        lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
-        lblScreenTitle.setText("Disaster Response System");
+        tblRequest = new javax.swing.JTable();
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblTitle.setText("Track Requests");
+        lblTitle.setText("Process Requests");
 
         btnBack.setBackground(new java.awt.Color(153, 153, 153));
         btnBack.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -57,7 +57,10 @@ public class TrackRequestStatus extends javax.swing.JPanel {
         btnBack.setOpaque(true);
         btnBack.addActionListener(this::btnBackActionPerformed);
 
-        tblRequests.setModel(new javax.swing.table.DefaultTableModel(
+        lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        lblScreenTitle.setText("Disaster Response System");
+
+        tblRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -68,7 +71,7 @@ public class TrackRequestStatus extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblRequests);
+        jScrollPane1.setViewportView(tblRequest);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -77,13 +80,13 @@ public class TrackRequestStatus extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblScreenTitle)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(btnBack)
-                        .addGap(197, 197, 197)
-                        .addComponent(lblTitle)))
-                .addContainerGap(285, Short.MAX_VALUE))
+                        .addGap(176, 176, 176)
+                        .addComponent(lblTitle))
+                    .addComponent(lblScreenTitle))
+                .addContainerGap(284, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(124, 124, 124)
@@ -97,12 +100,12 @@ public class TrackRequestStatus extends javax.swing.JPanel {
                 .addComponent(lblScreenTitle)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(29, 29, 29)
                         .addComponent(lblTitle))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBack)))
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addContainerGap(382, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(114, 114, 114)
@@ -113,9 +116,9 @@ public class TrackRequestStatus extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+//        userProcessContainer.remove(this);
+//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
 
@@ -124,22 +127,21 @@ public class TrackRequestStatus extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblScreenTitle;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JTable tblRequests;
+    private javax.swing.JTable tblRequest;
     // End of variables declaration//GEN-END:variables
 private void populateTable() {
-
-        DefaultTableModel model = (DefaultTableModel) tblRequests.getModel();
+       
+         DefaultTableModel model = (DefaultTableModel) tblRequest.getModel();
         model.setRowCount(0);
 
-        for (WorkRequest req : account.getWorkQueue().getWorkRequestList()) {
-
-            Object[] row = new Object[5];
-            row[0] = req.getRequestId();
-            row[1] = req.getRequestType();
-            row[2] = req.getMessage();
-            row[3] = req.getStatus();
-            row[4] = (req.getReceiver() == null) ? "Not Assigned" : req.getReceiver().getUsername();
-
+        for (WorkRequest req : org.getWorkQueue().getWorkRequestList()) {
+            Object[] row = new Object[6];
+            row[0] = req;
+            row[1] = req.getSender();
+            row[2] = "Location TBD"; // optional if no location field
+            row[3] = req.getMessage();
+            row[4] = req.getStatus();
+            row[5] = req.getReceiver();
             model.addRow(row);
         }
     }

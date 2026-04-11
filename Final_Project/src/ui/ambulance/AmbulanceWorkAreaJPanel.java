@@ -7,9 +7,10 @@ package ui.ambulance;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.UserAccount;
-import ui.requests.ProcessRequestsJPanel;
 import ui.requests.RequestHistoryJPanel;
 import ui.requests.ViewRequestsJPanel;
+import model.Network;
+import model.organization.Organization;
 
 /**
  *
@@ -18,12 +19,13 @@ import ui.requests.ViewRequestsJPanel;
 public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
+    private Organization organization;
     /**
      * Creates new form AmbulanceWorkAreaJPanel
      */
-    public AmbulanceWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
-        this.userProcessContainer = userProcessContainer;
+    public AmbulanceWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Network network) {        this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.organization = organization;
         initComponents();
     }
 
@@ -143,7 +145,7 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
         specific attributes on the process request page
         */
             
-        ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
+        AmbulanceProcessRequestsJPanel panel = new AmbulanceProcessRequestsJPanel (userProcessContainer, account, organization);
         userProcessContainer.add("ProcessRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

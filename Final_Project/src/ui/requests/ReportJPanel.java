@@ -84,8 +84,7 @@ public class ReportJPanel extends javax.swing.JPanel {
     private String findOrganizationNameForUser(UserAccount user) {
         EcoSystem system = EcoSystem.getInstance();
 
-        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
-            for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {            for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 for (model.UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
                     if (ua == user) {
                         return org.getName();
@@ -98,8 +97,7 @@ public class ReportJPanel extends javax.swing.JPanel {
     private String findEnterpriseNameForOrganization(model.organization.Organization organization) {
         EcoSystem system = EcoSystem.getInstance();
 
-        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
-            for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {            for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 if (org == organization) {
                     return enterprise.getName();
                 }

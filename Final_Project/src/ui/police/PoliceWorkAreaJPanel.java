@@ -7,7 +7,8 @@ import java.awt.CardLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.UserAccount;
-import ui.requests.ProcessRequestsJPanel;
+import model.organization.Organization;
+import ui.ambulance.AmbulanceProcessRequestsJPanel;
 import ui.requests.RequestHistoryJPanel;
 import ui.requests.ViewRequestsJPanel;
 /**
@@ -138,10 +139,7 @@ public class PoliceWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         //update this code to specify any role specific attributes on the process request page
-        ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ProcessRequestsJPanel", panel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnProcessRequestActionPerformed
 
     private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed

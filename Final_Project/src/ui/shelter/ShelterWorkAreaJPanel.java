@@ -7,7 +7,7 @@ package ui.shelter;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.UserAccount;
-import ui.requests.ProcessRequestsJPanel;
+import ui.ambulance.AmbulanceProcessRequestsJPanel;
 import ui.requests.RequestHistoryJPanel;
 import ui.requests.ViewRequestsJPanel;
 
@@ -138,10 +138,7 @@ public class ShelterWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         //update this code to make only able to edit which shelter its going to
-        ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ProcessRequestsJPanel", panel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnAssignShelterActionPerformed
 
     private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed

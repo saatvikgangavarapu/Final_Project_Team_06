@@ -2,30 +2,37 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.citizen;
-
+package ui.ambulance;
 import java.awt.CardLayout;
-import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.UserAccount;
 import model.WorkRequest;
+import model.organization.Organization;
+
 
 /**
  *
  * @author sashajohnson
  */
-public class TrackRequestStatus extends javax.swing.JPanel {
+public class AmbulanceViewRequestsJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
+    private Organization organization;
+    
     /**
-     * Creates new form TrackRequestStatus
+     * Creates new form AmbulanceViewRequestsJPanel
      */
-    public TrackRequestStatus(JPanel userProcessContainer, UserAccount account) {
+    public AmbulanceViewRequestsJPanel(JPanel userProcessContainer, UserAccount account, Organization organization) {
+
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.organization = organization;
+
         initComponents();
         populateTable();
+
     }
 
     /**
@@ -37,17 +44,14 @@ public class TrackRequestStatus extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblScreenTitle = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        lblScreenTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRequests = new javax.swing.JTable();
 
-        lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
-        lblScreenTitle.setText("Disaster Response System");
-
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblTitle.setText("Track Requests");
+        lblTitle.setText("View Requests");
 
         btnBack.setBackground(new java.awt.Color(153, 153, 153));
         btnBack.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -56,6 +60,9 @@ public class TrackRequestStatus extends javax.swing.JPanel {
         btnBack.setBorderPainted(false);
         btnBack.setOpaque(true);
         btnBack.addActionListener(this::btnBackActionPerformed);
+
+        lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
+        lblScreenTitle.setText("Disaster Response System");
 
         tblRequests.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,13 +84,13 @@ public class TrackRequestStatus extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblScreenTitle)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(btnBack)
-                        .addGap(197, 197, 197)
-                        .addComponent(lblTitle)))
-                .addContainerGap(285, Short.MAX_VALUE))
+                        .addGap(194, 194, 194)
+                        .addComponent(lblTitle))
+                    .addComponent(lblScreenTitle))
+                .addContainerGap(295, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(124, 124, 124)
@@ -97,12 +104,12 @@ public class TrackRequestStatus extends javax.swing.JPanel {
                 .addComponent(lblScreenTitle)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(29, 29, 29)
                         .addComponent(lblTitle))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBack)))
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addContainerGap(382, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(114, 114, 114)
@@ -126,19 +133,20 @@ public class TrackRequestStatus extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblRequests;
     // End of variables declaration//GEN-END:variables
-private void populateTable() {
+    private void populateTable() {
 
         DefaultTableModel model = (DefaultTableModel) tblRequests.getModel();
         model.setRowCount(0);
 
-        for (WorkRequest req : account.getWorkQueue().getWorkRequestList()) {
+        for (WorkRequest req : organization.getWorkQueue().getWorkRequestList()) {
 
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             row[0] = req.getRequestId();
             row[1] = req.getRequestType();
             row[2] = req.getMessage();
-            row[3] = req.getStatus();
-            row[4] = (req.getReceiver() == null) ? "Not Assigned" : req.getReceiver().getUsername();
+            row[3] = req.getSender().getUsername();
+            row[4] = req.getStatus();
+            row[5] = req.getPriority();
 
             model.addRow(row);
         }

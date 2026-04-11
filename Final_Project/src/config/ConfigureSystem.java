@@ -33,7 +33,7 @@ public class ConfigureSystem {
     public static EcoSystem configure() {
         EcoSystem system = EcoSystem.getInstance();
 
-        if (!system.getEnterpriseList().isEmpty()) {
+        if (!system.getNetwork().getEnterpriseList().isEmpty()) {
             return system;
         }
         
@@ -57,9 +57,9 @@ public class ConfigureSystem {
         ngo.getOrganizationDirectory().addOrganization(foodOrg);
         ngo.getOrganizationDirectory().addOrganization(shelterOrg);
 
-        system.addEnterprise(government);
-        system.addEnterprise(healthcare);
-        system.addEnterprise(ngo);
+        system.getNetwork().addEnterprise(government);
+        system.getNetwork().addEnterprise(healthcare);
+        system.getNetwork().addEnterprise(ngo);
 
         Person citizen = new Person("P001", "Citizen User", 25, "citizen@test.com");
         government.getOrganizationDirectory().getOrganizationList().get(0).getPersonDirectory().addPerson(citizen);

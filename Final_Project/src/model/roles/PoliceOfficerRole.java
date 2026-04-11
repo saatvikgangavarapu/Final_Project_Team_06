@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import model.Role;
 import model.UserAccount;
 import ui.police.PoliceWorkAreaJPanel;
+import model.Network;
 
 /**
  *
@@ -20,7 +21,7 @@ public class PoliceOfficerRole extends Role {
     }
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
+        public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network) {
         return new PoliceWorkAreaJPanel(userProcessContainer, account);
     }
 }
