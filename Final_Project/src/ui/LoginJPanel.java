@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui;
+
 import java.awt.CardLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import model.EcoSystem;
+import model.Network;
 import model.UserAccount;
 
 /**
@@ -18,20 +20,23 @@ import model.UserAccount;
  * @author sashajohnson
  */
 public class LoginJPanel extends javax.swing.JPanel {
-    private EcoSystem system;
-    
+
     private JPanel userProcessContainer;
+    private EcoSystem system;
+    private Network network;
+
     /**
      * Creates new form LoginJPanel
      */
-    public LoginJPanel(JPanel userProcessContainer, EcoSystem system) {
+    public LoginJPanel(JPanel userProcessContainer, EcoSystem system, Network network) {
+
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.network = network;
+
         initComponents();
-        
-        
     }
-    
+
     private void loginAction() {
         String username = txtUser.getText().trim();
         String password = txtPass.getText().trim();
@@ -43,13 +48,13 @@ public class LoginJPanel extends javax.swing.JPanel {
             return;
         }
 
-        JPanel workArea = account.getRole().createWorkArea(userProcessContainer, account);
+        JPanel workArea = account.getRole().createWorkArea(userProcessContainer, account, network);
         userProcessContainer.add("WorkArea", workArea);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,17 +65,15 @@ public class LoginJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         LoginJPanel = new javax.swing.JPanel();
-        txtUser = new javax.swing.JTextField();
         lblScreenTitle = new javax.swing.JLabel();
         lblMainTitle = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
         lblPass = new javax.swing.JLabel();
+        txtUser = new javax.swing.JTextField();
         txtPass = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
-
-        txtUser.addActionListener(this::txtUserActionPerformed);
 
         lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblScreenTitle.setText("Disaster Response System");
@@ -98,22 +101,14 @@ public class LoginJPanel extends javax.swing.JPanel {
             .addGroup(LoginJPanelLayout.createSequentialGroup()
                 .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(LoginJPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblScreenTitle))
-                    .addGroup(LoginJPanelLayout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLogIn)
-                            .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(LoginJPanelLayout.createSequentialGroup()
-                                    .addComponent(lblPass)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtPass))
-                                .addGroup(LoginJPanelLayout.createSequentialGroup()
-                                    .addComponent(lblUser)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(210, Short.MAX_VALUE))
+                        .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblUser)
+                            .addComponent(lblPass)))
+                    .addGroup(LoginJPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblScreenTitle)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginJPanelLayout.createSequentialGroup()
                 .addGap(0, 326, Short.MAX_VALUE)
                 .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -133,8 +128,8 @@ public class LoginJPanel extends javax.swing.JPanel {
                 .addComponent(lblMainTitle)
                 .addGap(61, 61, 61)
                 .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUser))
+                    .addComponent(lblUser)
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPass)

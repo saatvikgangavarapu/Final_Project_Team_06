@@ -5,31 +5,79 @@
 package ui.citizen;
 
 import java.awt.CardLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import model.Network;
 import model.UserAccount;
+import model.WorkRequest;
+import model.enterprise.Enterprise;
+import model.organization.FireDepartmentOrganization;
+import model.organization.FoodSupplyOrganization;
+import model.organization.HospitalOrganization;
+import model.organization.Organization;
+import model.organization.PoliceOrganization;
 
 /**
  *
  * @author sashajohnson
  */
-
-
-    /*
+/*
         you should be able to create any type of request from this panel. 
         add an option drop down to give the user a choice. 
         
-    */
-
+ */
 public class CreateRequestJPanel extends javax.swing.JPanel {
+
     private JPanel userProcessContainer;
     private UserAccount account;
+    private Network network;
+
     /**
      * Creates new form CreateEmergencyRequestJPanel
      */
-    public CreateRequestJPanel(JPanel userProcessContainer, UserAccount account) {
+    public CreateRequestJPanel(JPanel userProcessContainer, UserAccount account, Network network) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.network = network;
+
         initComponents();
+        initUI();
+        JButton btnSubmit = new JButton("Submit");
+        btnSubmit.setBounds(200, 300, 120, 35);
+
+// Action Listener
+        btnSubmit.addActionListener(e -> {
+
+            String type = cmbRequestType.getSelectedItem().toString();
+            String message = txtArea.getText();
+
+            if (message.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(null, "Message cannot be empty");
+                return;
+            }
+
+            // Create Request
+            WorkRequest request = new WorkRequest();
+            request.setMessage(message);
+            request.setSender(account);
+            request.setStatus("Pending");
+            request.setRequestType(type);
+
+            // Find correct organization
+            Organization org = findOrganization(type);
+
+            if (org != null) {
+                org.getWorkQueue().addWorkRequest(request);
+                account.getWorkQueue().addWorkRequest(request);
+
+                javax.swing.JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                txtArea.setText("");
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(null, "No Organization Found!");
+            }
+        });
+
+        add(btnSubmit);
     }
 
     /**
@@ -43,7 +91,11 @@ public class CreateRequestJPanel extends javax.swing.JPanel {
 
         lblScreenTitle = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
+        lblRequest = new javax.swing.JLabel();
+        lblMessageArea = new javax.swing.JLabel();
+        cmbRequestType = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
 
         lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblScreenTitle.setText("Disaster Response System");
@@ -51,13 +103,15 @@ public class CreateRequestJPanel extends javax.swing.JPanel {
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblTitle.setText("Create Requests");
 
-        btnBack.setBackground(new java.awt.Color(153, 153, 153));
-        btnBack.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack.setText("< Back");
-        btnBack.setBorderPainted(false);
-        btnBack.setOpaque(true);
-        btnBack.addActionListener(this::btnBackActionPerformed);
+        lblRequest.setText("Request Type: ");
+
+        lblMessageArea.setText("Message:");
+
+        cmbRequestType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medical", "Food", "Rescue" }));
+
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -68,39 +122,89 @@ public class CreateRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblScreenTitle)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnBack)
-                        .addGap(197, 197, 197)
+                        .addGap(273, 273, 273)
                         .addComponent(lblTitle)))
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(280, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(170, 170, 170)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblRequest)
+                        .addComponent(lblMessageArea))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbRequestType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(171, 171, 171)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblScreenTitle)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lblTitle))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBack)))
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(lblTitle)
+                .addContainerGap(374, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(125, 125, 125)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblRequest)
+                        .addComponent(cmbRequestType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(29, 29, 29)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblMessageArea)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(200, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
+    private javax.swing.JComboBox<String> cmbRequestType;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblMessageArea;
+    private javax.swing.JLabel lblRequest;
     private javax.swing.JLabel lblScreenTitle;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
+
+    private Organization findOrganization(String type) {
+
+        for (Enterprise ent : network.getEnterpriseList()) {
+
+            for (Organization org : ent.getOrganizationDirectory().getOrganizationList()) {
+
+                if (type.equals("Medical") && org.getName().contains("Hospital")) {
+                    return org;
+                }
+
+                if (type.equals("Food") && org.getName().contains("Food")) {
+                    return org;
+                }
+
+                if (type.equals("Rescue") && org.getName().contains("Fire")) {
+                    return org;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private void initUI() {
+
+        JButton btnBack = new JButton("< Back");
+        btnBack.setBounds(30, 35, 80, 25);
+
+        // Action Listener
+        btnBack.addActionListener(e -> {
+            userProcessContainer.remove(this);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.previous(userProcessContainer);
+        });
+
+        add(btnBack);
+    }
 }

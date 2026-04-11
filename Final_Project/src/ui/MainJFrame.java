@@ -7,6 +7,7 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import config.ConfigureSystem;
 import model.EcoSystem;
+import model.Network;
 
 /**
  *
@@ -26,7 +27,7 @@ public class MainJFrame extends javax.swing.JFrame {
         setSize(700, 460);
         setLocationRelativeTo(null);
         
-        LoginJPanel loginPanel = new LoginJPanel(mainContainerPanel, system);
+        LoginJPanel loginPanel = new LoginJPanel(mainContainerPanel, system, system.getNetwork());
         mainContainerPanel.add("LoginJPanel", loginPanel);
 
         ((CardLayout) mainContainerPanel.getLayout())
