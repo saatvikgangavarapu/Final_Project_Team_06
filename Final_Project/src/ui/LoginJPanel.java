@@ -66,7 +66,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         lblUser = new javax.swing.JLabel();
         lblPass = new javax.swing.JLabel();
         txtPass = new javax.swing.JTextField();
-        btnLogIn = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -84,11 +84,12 @@ public class LoginJPanel extends javax.swing.JPanel {
         lblPass.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         lblPass.setText("Password");
 
-        txtPass.addActionListener(this::txtPassActionPerformed);
-
-        btnLogIn.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        btnLogIn.setText("Log in");
-        btnLogIn.addActionListener(this::btnLogInActionPerformed);
+        btnSave.setBackground(new java.awt.Color(102, 153, 255));
+        btnSave.setForeground(new java.awt.Color(255, 255, 255));
+        btnSave.setText("Login");
+        btnSave.setBorderPainted(false);
+        btnSave.setOpaque(true);
+        btnSave.addActionListener(this::btnSaveActionPerformed);
 
         javax.swing.GroupLayout LoginJPanelLayout = new javax.swing.GroupLayout(LoginJPanel);
         LoginJPanel.setLayout(LoginJPanelLayout);
@@ -114,9 +115,14 @@ public class LoginJPanel extends javax.swing.JPanel {
                                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(210, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginJPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblMainTitle)
-                .addGap(320, 320, 320))
+                .addGap(0, 326, Short.MAX_VALUE)
+                .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSave)
+                    .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblMainTitle)
+                        .addComponent(txtUser)
+                        .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))
+                .addGap(193, 193, 193))
         );
         LoginJPanelLayout.setVerticalGroup(
             LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,31 +139,23 @@ public class LoginJPanel extends javax.swing.JPanel {
                 .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPass)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnLogIn)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(btnSave)
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         add(LoginJPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUserActionPerformed
-
-    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassActionPerformed
-
-    private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         loginAction();
-    }//GEN-LAST:event_btnLogInActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginJPanel;
-    private javax.swing.JButton btnLogIn;
+    private javax.swing.JButton btnSave;
     private javax.swing.JLabel lblMainTitle;
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblScreenTitle;
