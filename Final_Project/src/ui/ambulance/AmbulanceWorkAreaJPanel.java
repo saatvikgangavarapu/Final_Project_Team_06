@@ -6,7 +6,9 @@ package ui.ambulance;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import model.Network;
 import model.UserAccount;
+import model.organization.Organization;
 import ui.requests.ProcessRequestsJPanel;
 import ui.requests.RequestHistoryJPanel;
 import ui.requests.ViewRequestsJPanel;
@@ -18,12 +20,14 @@ import ui.requests.ViewRequestsJPanel;
 public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
+    private Organization organization;
     /**
      * Creates new form AmbulanceWorkAreaJPanel
      */
-    public AmbulanceWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
+    public AmbulanceWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Network network) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.organization = organization;
         initComponents();
     }
 

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+
 import java.util.ArrayList;
 import model.directory.UserAccountDirectory;
 import model.enterprise.Enterprise;
@@ -12,14 +13,15 @@ import model.enterprise.Enterprise;
  * @author sashajohnson
  */
 public class EcoSystem {
+
     private static EcoSystem system;
     private String networkName;
-    private ArrayList<Enterprise> enterpriseList;
     private UserAccountDirectory systemUserAccountDirectory;
-    
+    private Network network;
+
     private EcoSystem() {
         networkName = "Disaster Management Network";
-        enterpriseList = new ArrayList<>();
+        network = new Network();
         systemUserAccountDirectory = new UserAccountDirectory();
     }
 
@@ -30,29 +32,25 @@ public class EcoSystem {
         return system;
     }
 
+    public Network getNetwork() {
+        return network;
+    }
+
     public String getNetworkName() {
         return networkName;
-    }
-
-    public ArrayList<Enterprise> getEnterpriseList() {
-        return enterpriseList;
-    }
-
-    public void addEnterprise(Enterprise enterprise) {
-        enterpriseList.add(enterprise);
     }
 
     public UserAccountDirectory getSystemUserAccountDirectory() {
         return systemUserAccountDirectory;
     }
-    
+
     public UserAccount authenticateUser(String username, String password) {
         UserAccount account = systemUserAccountDirectory.authenticateUser(username, password);
         if (account != null) {
             return account;
         }
 
-        for (Enterprise enterprise : enterpriseList) {
+        for (Enterprise enterprise : network.getEnterpriseList()) {
             account = enterprise.getUserAccountDirectory().authenticateUser(username, password);
             if (account != null) {
                 return account;

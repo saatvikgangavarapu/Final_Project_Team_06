@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
  * @author sashajohnson
  */
 public class WorkRequest {
-    
+
     private String requestId;
     private UserAccount sender;
     private UserAccount receiver;
@@ -19,8 +20,17 @@ public class WorkRequest {
     private String priority;
     private Date createdDate;
     private Date resolvedDate;
-    
-     public WorkRequest() {
+    private String requestType;
+
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
+    }
+
+    public WorkRequest() {
         this.createdDate = new Date();
     }
 
