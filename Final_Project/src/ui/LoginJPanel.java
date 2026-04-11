@@ -71,7 +71,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         lblPass = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         txtPass = new javax.swing.JTextField();
-        btnLogIn = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -87,8 +87,12 @@ public class LoginJPanel extends javax.swing.JPanel {
         lblPass.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         lblPass.setText("Password");
 
-        btnLogIn.setText("Login");
-        btnLogIn.addActionListener();
+        btnSave.setBackground(new java.awt.Color(102, 153, 255));
+        btnSave.setForeground(new java.awt.Color(255, 255, 255));
+        btnSave.setText("Login");
+        btnSave.setBorderPainted(false);
+        btnSave.setOpaque(true);
+        btnSave.addActionListener(this::btnSaveActionPerformed);
 
         javax.swing.GroupLayout LoginJPanelLayout = new javax.swing.GroupLayout(LoginJPanel);
         LoginJPanel.setLayout(LoginJPanelLayout);
@@ -108,7 +112,7 @@ public class LoginJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginJPanelLayout.createSequentialGroup()
                 .addGap(0, 326, Short.MAX_VALUE)
                 .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLogIn)
+                    .addComponent(btnSave)
                     .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lblMainTitle)
                         .addComponent(txtUser)
@@ -130,24 +134,23 @@ public class LoginJPanel extends javax.swing.JPanel {
                 .addGroup(LoginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPass)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(btnLogIn)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(btnSave)
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         add(LoginJPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         loginAction();
-        //GEN-LAST:event_btnLogInActionPerformed
-    }//GEN-LAST:event_btnLogInActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel LoginJPanel;
-    private javax.swing.JButton btnLogIn;
+    private javax.swing.JButton btnSave;
     private javax.swing.JLabel lblMainTitle;
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblScreenTitle;
