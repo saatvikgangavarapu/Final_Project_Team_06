@@ -10,6 +10,9 @@ import model.UserAccount;
 import ui.requests.ProcessRequestsJPanel;
 import ui.requests.RequestHistoryJPanel;
 import ui.requests.ViewRequestsJPanel;
+import ui.ngorequests.NGOProcessRequestsJPanel;
+import ui.ngorequests.NGORequestHistoryJPanel;
+import ui.ngorequests.NGOViewRequestsJPanel;
 
 /**
  *
@@ -125,8 +128,8 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     private void btnViewHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHistoryActionPerformed
         // TODO add your handling code here:
         //update this code to specify to show only entries within the current role
-        RequestHistoryJPanel panel = new RequestHistoryJPanel (userProcessContainer, account);
-        userProcessContainer.add("RequestHistoryJPanel", panel);
+        NGORequestHistoryJPanel panel = new NGORequestHistoryJPanel(userProcessContainer, account);
+        userProcessContainer.add("NGORequestHistoryJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewHistoryActionPerformed
@@ -134,8 +137,8 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     private void btnProcessRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessRequestActionPerformed
         // TODO add your handling code here:
         //update this code to specify any role specific attributes on the process request page
-        ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ProcessRequestsJPanel", panel);
+        NGOProcessRequestsJPanel panel = new NGOProcessRequestsJPanel(userProcessContainer, account, null);
+        userProcessContainer.add("NGOProcessRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnProcessRequestActionPerformed
@@ -143,8 +146,8 @@ public class NGOWorkAreaJPanel extends javax.swing.JPanel {
     private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed
         // TODO add your handling code here:
         //update this code to specify to show only entries within the current role
-        ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ViewRequestsJPanel", panel);
+        NGOViewRequestsJPanel panel = new NGOViewRequestsJPanel(userProcessContainer, account);
+        userProcessContainer.add("NGOViewRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewRequestsActionPerformed
