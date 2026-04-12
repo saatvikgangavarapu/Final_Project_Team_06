@@ -14,15 +14,15 @@ import model.organization.Organization;
  *
  * @author DELL
  */
-public class ViewRequestsJPanel extends javax.swing.JPanel {
+public class DoctorRequestHistoryJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
     private Organization org;
 
     /**
-     * Creates new form ViewRequestJPanel
+     * Creates new form ViewHistoryJPanel
      */
-    public ViewRequestsJPanel(JPanel userProcessContainer, Organization org) {
+    public DoctorRequestHistoryJPanel(JPanel userProcessContainer, Organization org) {
         
         this.userProcessContainer = userProcessContainer;
         this.org = org;
@@ -43,13 +43,13 @@ public class ViewRequestsJPanel extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblRequest = new javax.swing.JTable();
+        tblHistory = new javax.swing.JTable();
 
         lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblScreenTitle.setText("Disaster Response System");
 
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        lblTitle.setText("View Requests");
+        lblTitle.setText("Request History");
 
         btnBack.setBackground(new java.awt.Color(153, 153, 153));
         btnBack.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -63,18 +63,18 @@ public class ViewRequestsJPanel extends javax.swing.JPanel {
             }
         });
 
-        tblRequest.setModel(new javax.swing.table.DefaultTableModel(
+        tblHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Sender", "Status", "Created Date"
+                "ID", "Sender", "Message", "Created Date", "Resolved"
             }
         ));
-        jScrollPane1.setViewportView(tblRequest);
+        jScrollPane1.setViewportView(tblHistory);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -83,18 +83,18 @@ public class ViewRequestsJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                        .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnBack)
                             .addComponent(lblScreenTitle)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(317, 317, 317)
+                        .addGap(308, 308, 308)
                         .addComponent(lblTitle)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 127, Short.MAX_VALUE)
+                .addGap(0, 112, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(104, 104, 104))
+                .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,11 +103,11 @@ public class ViewRequestsJPanel extends javax.swing.JPanel {
                 .addComponent(lblScreenTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(lblTitle)
-                .addGap(93, 93, 93)
+                .addGap(60, 60, 60)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -124,21 +124,26 @@ public class ViewRequestsJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblScreenTitle;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JTable tblRequest;
+    private javax.swing.JTable tblHistory;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
         
-        DefaultTableModel model = (DefaultTableModel) tblRequest.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblHistory.getModel();
         model.setRowCount(0);
 
         for (WorkRequest req : org.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[4];
-            row[0] = req;
-            row[1] = req.getSender();
-            row[2] = req.getStatus();
-            row[3] = req.getCreatedDate();
-            model.addRow(row);
+
+            if ("Completed".equals(req.getStatus())) {
+                Object[] row = new Object[5];
+                row[0] = req;
+                row[1] = req.getSender();
+                row[2] = req.getMessage();
+                row[3] = req.getCreatedDate();
+                row[4] = req.getResolvedDate();
+
+                model.addRow(row);
+            }
         }
     }
 }

@@ -16,20 +16,20 @@ import model.organization.Organization;
  *
  * @author DELL
  */
-public class ProcessRequestsJPanel extends javax.swing.JPanel {
+public class DoctorProcessRequestsJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
     private UserAccount account;
-    private Organization org;
+    private WorkRequest request;
 
     /**
      * Creates new form ProcessRequestJPanel
      */
-    public ProcessRequestsJPanel(JPanel userProcessContainer, UserAccount account, Organization org) {
+    public DoctorProcessRequestsJPanel(JPanel userProcessContainer, UserAccount account, WorkRequest request) {
         
          this.userProcessContainer = userProcessContainer;
         this.account = account;
-        this.org = org;
+        this.request = request;
         initComponents();
         populateTable();
     }
@@ -218,7 +218,7 @@ public class ProcessRequestsJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblRequest.getModel();
         model.setRowCount(0);
 
-        for (WorkRequest req : org.getWorkQueue().getWorkRequestList()) {
+        for (WorkRequest req : request.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[5];
             row[0] = req;
             row[1] = req.getSender();

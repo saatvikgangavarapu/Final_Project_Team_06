@@ -26,19 +26,19 @@ import model.organization.PoliceOrganization;
         add an option drop down to give the user a choice. 
         
  */
-public class CreateRequestJPanel extends javax.swing.JPanel {
+public class CitizenProcessRequestJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private UserAccount account;
-    private Network network;
+    private WorkRequest request;
 
     /**
      * Creates new form CreateEmergencyRequestJPanel
      */
-    public CreateRequestJPanel(JPanel userProcessContainer, UserAccount account, Network network) {
+    public CitizenProcessRequestJPanel(JPanel userProcessContainer, UserAccount account, WorkRequest request) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
-        this.network = network;
+        this.request = request;
 
         initComponents();
         initUI();
@@ -57,7 +57,6 @@ public class CreateRequestJPanel extends javax.swing.JPanel {
             }
 
             // Create Request
-            WorkRequest request = new WorkRequest();
             request.setMessage(message);
             request.setSender(account);
             request.setStatus("Pending");
