@@ -18,7 +18,7 @@ import model.organization.Organization;
  */
 public class ProcessRequestsJPanel extends javax.swing.JPanel {
     
-     private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private UserAccount account;
     private Organization org;
 
@@ -32,7 +32,6 @@ public class ProcessRequestsJPanel extends javax.swing.JPanel {
         initComponents();
         populateTable();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

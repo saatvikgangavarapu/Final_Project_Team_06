@@ -21,15 +21,18 @@ public class DoctorProcessRequestsJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
     private WorkRequest request;
+    private Organization organization;
 
     /**
      * Creates new form ProcessRequestJPanel
      */
-    public DoctorProcessRequestsJPanel(JPanel userProcessContainer, UserAccount account, WorkRequest request) {
+    public DoctorProcessRequestsJPanel(JPanel userProcessContainer, UserAccount account, WorkRequest request,  Organization organization) {
         
-         this.userProcessContainer = userProcessContainer;
+        this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.request = request;
+        this.organization = organization;
+
         initComponents();
         populateTable();
     }
@@ -168,7 +171,6 @@ public class DoctorProcessRequestsJPanel extends javax.swing.JPanel {
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         // TODO add your handling code here:
-        
         int selectedRow = tblRequest.getSelectedRow();
         if (selectedRow < 0) return;
 
@@ -218,7 +220,7 @@ public class DoctorProcessRequestsJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblRequest.getModel();
         model.setRowCount(0);
 
-        for (WorkRequest req : request.getWorkQueue().getWorkRequestList()) {
+        for (WorkRequest req : organization.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[5];
             row[0] = req;
             row[1] = req.getSender();

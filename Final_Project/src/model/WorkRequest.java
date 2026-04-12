@@ -5,6 +5,7 @@
 package model;
 
 import java.util.Date;
+import utilities.IdGenerator;
 
 /**
  *
@@ -22,6 +23,7 @@ public class WorkRequest {
     private Date resolvedDate;
     private String requestType;
 
+    
     public String getRequestType() {
         return requestType;
     }
@@ -31,9 +33,9 @@ public class WorkRequest {
     }
 
     public WorkRequest() {
+        this.requestId = IdGenerator.generateId();
         this.createdDate = new Date();
     }
-
     public String getRequestId() {
         return requestId;
     }

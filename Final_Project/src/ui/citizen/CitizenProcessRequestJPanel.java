@@ -30,15 +30,16 @@ public class CitizenProcessRequestJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private UserAccount account;
-    private WorkRequest request;
-
+    private WorkRequest request;    
+    private Network network; 
     /**
      * Creates new form CreateEmergencyRequestJPanel
      */
-    public CitizenProcessRequestJPanel(JPanel userProcessContainer, UserAccount account, WorkRequest request) {
+    public CitizenProcessRequestJPanel(JPanel userProcessContainer, UserAccount account, WorkRequest request, Network network1) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.request = request;
+        this.network = network1;
 
         initComponents();
         initUI();
@@ -123,7 +124,7 @@ public class CitizenProcessRequestJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(273, 273, 273)
                         .addComponent(lblTitle)))
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(298, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(170, 170, 170)
@@ -143,7 +144,7 @@ public class CitizenProcessRequestJPanel extends javax.swing.JPanel {
                 .addComponent(lblScreenTitle)
                 .addGap(37, 37, 37)
                 .addComponent(lblTitle)
-                .addContainerGap(374, Short.MAX_VALUE))
+                .addContainerGap(382, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(125, 125, 125)

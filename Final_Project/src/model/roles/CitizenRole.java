@@ -21,7 +21,7 @@ public class CitizenRole extends Role{
     }
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account) {
-        return new CitizenWorkAreaJPanel(userProcessContainer, account);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network) {
+        return new CitizenWorkAreaJPanel(userProcessContainer, account, network);
     }
 }

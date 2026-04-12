@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import model.Network;
 import model.Role;
 import model.UserAccount;
+import model.organization.Organization;
 import ui.fire.FireWorkAreaJPanel;
 
 /**
@@ -22,6 +23,6 @@ public class FireOfficerRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network) {
-        return new FireWorkAreaJPanel(userProcessContainer, account);
+        return new FireWorkAreaJPanel(userProcessContainer, account, network);
     }
 }

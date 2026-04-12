@@ -7,9 +7,8 @@ package ui.doctor;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import model.UserAccount;
-import ui.requests.ProcessRequestsJPanel;
-import ui.requests.RequestHistoryJPanel;
-import ui.requests.ViewRequestsJPanel;
+import model.Network;
+import model.organization.Organization;
 
 /**
  *
@@ -18,15 +17,27 @@ import ui.requests.ViewRequestsJPanel;
 public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
+    private Network network;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
+    public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Network network) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.network = network;
         initComponents();
     }
-
+    
+    private Organization getHospitalOrg() {
+        for (model.enterprise.Enterprise ent : network.getEnterpriseList()) {
+            for (Organization org : ent.getOrganizationDirectory().getOrganizationList()) {
+                if (org.getName().contains("Hospital")) {
+                    return org;
+                }
+            }
+        }
+        return null;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,18 +137,16 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnViewHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHistoryActionPerformed
         // TODO add your handling code here:
-        
-        //update this code to specify to show only entries within the current role
-        RequestHistoryJPanel panel = new RequestHistoryJPanel (userProcessContainer, account);
+        DoctorRequestHistoryJPanel panel = new DoctorRequestHistoryJPanel(userProcessContainer, getHospitalOrg());
         userProcessContainer.add("RequestHistoryJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnViewHistoryActionPerformed
 
     private void btnProcessRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessRequestActionPerformed
         // TODO add your handling code here:
-        //update this code to specify any role specific attributes on the process request page
-        ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
+        DoctorProcessRequestsJPanel panel = new DoctorProcessRequestsJPanel(userProcessContainer, account, null, getHospitalOrg());
         userProcessContainer.add("ProcessRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -145,12 +154,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed
         // TODO add your handling code here:
-        
-        //update this code to specify to show only entries within the current role
-        ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
+        DoctorViewRequestsJPanel panel = new DoctorViewRequestsJPanel(userProcessContainer, getHospitalOrg());
         userProcessContainer.add("ViewRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnViewRequestsActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed

@@ -9,5 +9,10 @@ package utilities;
  * @author sashajohnson
  */
 public class IdGenerator {
+    private static int counter = 0;
     
+    public static String generateId() {
+        counter++;
+        return "REQ-" + counter;
+    }
 }
