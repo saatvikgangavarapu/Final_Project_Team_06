@@ -71,6 +71,10 @@ public class CitizenProcessRequestJPanel extends javax.swing.JPanel {
                 account.getWorkQueue().addWorkRequest(request);
 
                 javax.swing.JOptionPane.showMessageDialog(null, "Request Sent Successfully!");
+                userProcessContainer.remove(this);
+                CardLayout cl = (CardLayout) userProcessContainer.getLayout();
+                cl.previous(userProcessContainer);
+
                 txtArea.setText("");
             } else {
                 javax.swing.JOptionPane.showMessageDialog(null, "No Organization Found!");
