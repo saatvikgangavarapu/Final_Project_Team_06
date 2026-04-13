@@ -10,6 +10,9 @@ import model.UserAccount;
 import ui.requests.ProcessRequestsJPanel;
 import ui.requests.RequestHistoryJPanel;
 import ui.requests.ViewRequestsJPanel;
+import ui.shelterrequests.ShelterProcessRequestsJPanel;
+import ui.shelterrequests.ShelterRequestHistoryJPanel;
+import ui.shelterrequests.ShelterViewRequestsJPanel;
 
 /**
  *
@@ -128,8 +131,8 @@ public class ShelterWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         //update this code to specify to show only entries within the current role
-        RequestHistoryJPanel panel = new RequestHistoryJPanel (userProcessContainer, account);
-        userProcessContainer.add("RequestHistoryJPanel", panel);
+        ShelterRequestHistoryJPanel panel = new ShelterRequestHistoryJPanel(userProcessContainer, account);
+        userProcessContainer.add("ShelterRequestHistoryJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewHistoryActionPerformed
@@ -138,8 +141,8 @@ public class ShelterWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         //update this code to make only able to edit which shelter its going to
-        ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ProcessRequestsJPanel", panel);
+        ShelterProcessRequestsJPanel panel = new ShelterProcessRequestsJPanel(userProcessContainer, account, null);
+        userProcessContainer.add("ShelterProcessRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAssignShelterActionPerformed
@@ -147,8 +150,8 @@ public class ShelterWorkAreaJPanel extends javax.swing.JPanel {
     private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed
         // TODO add your handling code here:
         //update this code to specify to show only entries within the current role
-        ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ViewRequestsJPanel", panel);
+        ShelterViewRequestsJPanel panel = new ShelterViewRequestsJPanel(userProcessContainer, account);
+        userProcessContainer.add("ShelterViewRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewRequestsActionPerformed

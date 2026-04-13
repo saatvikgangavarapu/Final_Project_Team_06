@@ -134,10 +134,12 @@ public class PoliceWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         //update this code to specify to show only entries within the current role
-        RequestHistoryJPanel panel = new RequestHistoryJPanel (userProcessContainer, account);
-        userProcessContainer.add("RequestHistoryJPanel", panel);
+        PoliceRequestHistoryJPanel panel = new PoliceRequestHistoryJPanel(userProcessContainer, account);
+        userProcessContainer.add("PoliceRequestHistoryJPanel", panel);
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnViewHistoryActionPerformed
 
     private void btnProcessRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessRequestActionPerformed
@@ -146,7 +148,8 @@ public class PoliceWorkAreaJPanel extends javax.swing.JPanel {
         //update this code to specify any role specific attributes on the process request page
         //ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
         PoliceProcessRequestsJPanel panel = new PoliceProcessRequestsJPanel(userProcessContainer, account, null);
-        userProcessContainer.add("ProcessRequestsJPanel", panel);
+        userProcessContainer.add("PoliceProcessRequestsJPanel", panel);
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnProcessRequestActionPerformed
@@ -156,8 +159,9 @@ public class PoliceWorkAreaJPanel extends javax.swing.JPanel {
         //update this code to specify to show only entries within the current role
         //ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
         //PoliceViewRequestsJPanel panel = new PoliceViewRequestsJPanel(userProcessContainer, account);
-        PoliceRequestHistoryJPanel panel = new PoliceRequestHistoryJPanel(userProcessContainer, account);
-        userProcessContainer.add("ViewRequestsJPanel", panel);
+        PoliceViewRequestsJPanel panel = new PoliceViewRequestsJPanel(userProcessContainer, account);
+        userProcessContainer.add("PoliceViewRequestsJPanel", panel);
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewRequestsActionPerformed

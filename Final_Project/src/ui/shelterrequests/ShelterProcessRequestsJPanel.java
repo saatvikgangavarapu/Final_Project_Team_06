@@ -21,7 +21,7 @@ public class ShelterProcessRequestsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ShelterProcessRequestsJPanel
      */
-    public ShelterProcessRequestsJPanel() {
+    public ShelterProcessRequestsJPanel(JPanel userProcessContainer, UserAccount account, WorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
