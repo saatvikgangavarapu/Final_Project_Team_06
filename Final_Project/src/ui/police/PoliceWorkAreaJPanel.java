@@ -7,6 +7,12 @@ import java.awt.CardLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.UserAccount;
+import ui.policerequests.PoliceProcessRequestsJPanel;
+import ui.policerequests.PoliceRequestHistoryJPanel;
+import ui.policerequests.PoliceViewRequestsJPanel;
+import ui.requests.ProcessRequestsJPanel;
+import ui.requests.RequestHistoryJPanel;
+import ui.requests.ViewRequestsJPanel;
 import ui.requests.ProcessRequestsJPanel;
 import ui.requests.RequestHistoryJPanel;
 import ui.requests.ViewRequestsJPanel;
@@ -128,18 +134,22 @@ public class PoliceWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         //update this code to specify to show only entries within the current role
-        RequestHistoryJPanel panel = new RequestHistoryJPanel (userProcessContainer, account);
-        userProcessContainer.add("RequestHistoryJPanel", panel);
+        PoliceRequestHistoryJPanel panel = new PoliceRequestHistoryJPanel(userProcessContainer, account);
+        userProcessContainer.add("PoliceRequestHistoryJPanel", panel);
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnViewHistoryActionPerformed
 
     private void btnProcessRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessRequestActionPerformed
         // TODO add your handling code here:
         
         //update this code to specify any role specific attributes on the process request page
-        ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ProcessRequestsJPanel", panel);
+        //ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
+        PoliceProcessRequestsJPanel panel = new PoliceProcessRequestsJPanel(userProcessContainer, account, null);
+        userProcessContainer.add("PoliceProcessRequestsJPanel", panel);
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnProcessRequestActionPerformed
@@ -147,8 +157,11 @@ public class PoliceWorkAreaJPanel extends javax.swing.JPanel {
     private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed
         // TODO add your handling code here:
         //update this code to specify to show only entries within the current role
-        ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ViewRequestsJPanel", panel);
+        //ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
+        //PoliceViewRequestsJPanel panel = new PoliceViewRequestsJPanel(userProcessContainer, account);
+        PoliceViewRequestsJPanel panel = new PoliceViewRequestsJPanel(userProcessContainer, account);
+        userProcessContainer.add("PoliceViewRequestsJPanel", panel);
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewRequestsActionPerformed

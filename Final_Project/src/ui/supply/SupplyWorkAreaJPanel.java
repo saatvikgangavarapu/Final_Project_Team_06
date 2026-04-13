@@ -10,7 +10,12 @@ import model.UserAccount;
 import ui.requests.ProcessRequestsJPanel;
 import ui.requests.RequestHistoryJPanel;
 import ui.requests.ViewRequestsJPanel;
-
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import model.UserAccount;
+import ui.supplyrequests.SupplyProcessRequestsJPanel;
+import ui.supplyrequests.SupplyRequestHistoryJPanel;
+import ui.supplyrequests.SupplyViewRequestsJPanel;
 /**
  *
  * @author sashajohnson
@@ -129,8 +134,9 @@ public class SupplyWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         //update this code to specify to show only entries within the current role
-        RequestHistoryJPanel panel = new RequestHistoryJPanel (userProcessContainer, account);
-        userProcessContainer.add("RequestHistoryJPanel", panel);
+        SupplyRequestHistoryJPanel panel = new SupplyRequestHistoryJPanel(userProcessContainer, account);
+        userProcessContainer.add("SupplyRequestHistoryJPanel", panel);
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewHistoryActionPerformed
@@ -138,8 +144,9 @@ public class SupplyWorkAreaJPanel extends javax.swing.JPanel {
     private void btnManageInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageInventoryActionPerformed
         // TODO add your handling code here:
         //update this code to specify any role specific attributes on the process request page
-        ManageInventoryJPanel panel = new ManageInventoryJPanel (userProcessContainer, account);
-        userProcessContainer.add("ManageInventoryJPanel", panel);
+        SupplyProcessRequestsJPanel panel = new SupplyProcessRequestsJPanel(userProcessContainer, account, null);
+        userProcessContainer.add("SupplyProcessRequestsJPanel", panel);
+
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
         
@@ -147,8 +154,8 @@ public class SupplyWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed
         // TODO add your handling code here:
-        ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
-        userProcessContainer.add("ViewRequestsJPanel", panel);
+        SupplyViewRequestsJPanel panel = new SupplyViewRequestsJPanel(userProcessContainer, account);
+        userProcessContainer.add("SupplyViewRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
         
