@@ -5,17 +5,21 @@
 package ui.citizen;
 
 import java.awt.CardLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 import model.UserAccount;
+import model.WorkRequest;
 
 /**
  *
- * @author sashajohnson
+ * @author TanviModi
  */
-
 public class ViewMyRequestsJPanel extends javax.swing.JPanel {
+
     private JPanel userProcessContainer;
     private UserAccount account;
+
     /**
      * Creates new form ViewMyRequests
      */
@@ -23,6 +27,8 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         initComponents();
+        initUI();
+        populateTable();
     }
 
     /**
@@ -36,7 +42,8 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
 
         lblScreenTitle = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblRequests = new javax.swing.JTable();
 
         lblScreenTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 16)); // NOI18N
         lblScreenTitle.setText("Disaster Response System");
@@ -44,56 +51,91 @@ public class ViewMyRequestsJPanel extends javax.swing.JPanel {
         lblTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lblTitle.setText("My Requests");
 
-        btnBack.setBackground(new java.awt.Color(153, 153, 153));
-        btnBack.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        btnBack.setForeground(new java.awt.Color(255, 255, 255));
-        btnBack.setText("< Back");
-        btnBack.setBorderPainted(false);
-        btnBack.setOpaque(true);
-        btnBack.addActionListener(this::btnBackActionPerformed);
+        tblRequests.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Request Type", "Message", "Status", "Priority"
+            }
+        ));
+        jScrollPane1.setViewportView(tblRequests);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblScreenTitle)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnBack)
-                        .addGap(197, 197, 197)
+                        .addContainerGap()
+                        .addComponent(lblScreenTitle))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(314, 314, 314)
                         .addComponent(lblTitle)))
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addComponent(lblScreenTitle)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lblTitle))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBack)))
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(lblTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(177, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
+    private javax.swing.JButton btnBack2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblScreenTitle;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTable tblRequests;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+
+        DefaultTableModel model = (DefaultTableModel) tblRequests.getModel();
+        model.setRowCount(0);
+
+        for (WorkRequest req : account.getWorkQueue().getWorkRequestList()) {
+
+            Object[] row = new Object[6];
+            row[0] = req.getRequestId();
+            row[1] = req.getRequestType();
+            row[2] = req.getMessage();
+            row[3] = req.getStatus();
+            row[4] = req.getPriority();
+
+            model.addRow(row);
+        }
+    }
+
+    private void initUI() {
+
+        JButton btnBack = new JButton("< Back");
+        btnBack.setBounds(30, 35, 80, 25);
+
+        // Action Listener
+        btnBack.addActionListener(e -> {
+            userProcessContainer.remove(this);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.previous(userProcessContainer);
+        });
+
+        add(btnBack);
+    }
 }

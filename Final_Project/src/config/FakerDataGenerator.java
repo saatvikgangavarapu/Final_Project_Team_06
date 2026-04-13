@@ -64,7 +64,7 @@ public class FakerDataGenerator {
         ArrayList<Organization> allOrganizations = new ArrayList<>();
         ArrayList<UserAccount> citizenAccounts = new ArrayList<>();
 
-        for (Enterprise enterprise : system.getEnterpriseList()) {
+        for (Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
             allOrganizations.addAll(enterprise.getOrganizationDirectory().getOrganizationList());
         }
 

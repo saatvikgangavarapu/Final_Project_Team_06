@@ -86,7 +86,7 @@ public class ManagementJPanel extends javax.swing.JPanel {
     }
     
     private void populateUsers(javax.swing.table.DefaultTableModel model) {
-        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
+        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
             for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 for (model.UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
 
@@ -104,7 +104,7 @@ public class ManagementJPanel extends javax.swing.JPanel {
     }
     
     private void populateEnterprises(javax.swing.table.DefaultTableModel model) {
-        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
+        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
             Object[] row = new Object[3];
             row[0] = enterprise.getName();
             row[1] = enterprise.getType();
@@ -115,7 +115,7 @@ public class ManagementJPanel extends javax.swing.JPanel {
     }
     
     private void populateOrganizations(javax.swing.table.DefaultTableModel model) {
-        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
+        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
             for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
 
                 Object[] row = new Object[3];
@@ -138,7 +138,7 @@ public class ManagementJPanel extends javax.swing.JPanel {
 
         String username = String.valueOf(tblAdminManagement.getValueAt(selectedRow, 0));
 
-        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
+        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
             for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 for (model.UserAccount ua : org.getUserAccountDirectory().getUserAccountList()) {
                     if (username.equals(ua.getUsername())) {
@@ -161,7 +161,7 @@ public class ManagementJPanel extends javax.swing.JPanel {
 
         String enterpriseName = String.valueOf(tblAdminManagement.getValueAt(selectedRow, 0));
 
-        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
+        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
             if (enterpriseName.equals(enterprise.getName())) {
                 return enterprise;
             }
@@ -180,7 +180,7 @@ public class ManagementJPanel extends javax.swing.JPanel {
 
         String organizationName = String.valueOf(tblAdminManagement.getValueAt(selectedRow, 0));
 
-        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
+        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
             for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 if (organizationName.equals(org.getName())) {
                     return org;
@@ -194,7 +194,7 @@ public class ManagementJPanel extends javax.swing.JPanel {
         model.UserAccount selectedUser = getSelectedUser();
         if (selectedUser == null) return;
 
-        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
+        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
             for (model.organization.Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
                 if (org.getUserAccountDirectory().getUserAccountList().remove(selectedUser)) {
                     javax.swing.JOptionPane.showMessageDialog(this, "User deleted.");
@@ -207,7 +207,7 @@ public class ManagementJPanel extends javax.swing.JPanel {
         model.enterprise.Enterprise selectedEnterprise = getSelectedEnterprise();
         if (selectedEnterprise == null) return;
 
-        if (system.getEnterpriseList().remove(selectedEnterprise)) {
+        if (system.getNetwork().getEnterpriseList().remove(selectedEnterprise)) {
             javax.swing.JOptionPane.showMessageDialog(this, "Enterprise deleted.");
         }
     }
@@ -215,7 +215,7 @@ public class ManagementJPanel extends javax.swing.JPanel {
         model.organization.Organization selectedOrganization = getSelectedOrganization();
         if (selectedOrganization == null) return;
 
-        for (model.enterprise.Enterprise enterprise : system.getEnterpriseList()) {
+        for (model.enterprise.Enterprise enterprise : system.getNetwork().getEnterpriseList()) {
             if (enterprise.getOrganizationDirectory().getOrganizationList().remove(selectedOrganization)) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Organization deleted.");
                 return;

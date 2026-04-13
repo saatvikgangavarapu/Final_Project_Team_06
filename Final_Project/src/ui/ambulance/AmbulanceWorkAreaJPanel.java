@@ -6,10 +6,9 @@ package ui.ambulance;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import model.Network;
 import model.UserAccount;
-import ui.requests.ProcessRequestsJPanel;
-import ui.requests.RequestHistoryJPanel;
-import ui.requests.ViewRequestsJPanel;
+import model.organization.Organization;
 
 /**
  *
@@ -18,15 +17,26 @@ import ui.requests.ViewRequestsJPanel;
 public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
+    private Network network;
     /**
      * Creates new form AmbulanceWorkAreaJPanel
      */
-    public AmbulanceWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
+    public AmbulanceWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Network network) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.network = network;
         initComponents();
     }
-
+    private Organization getAmbulanceOrg() {
+         for (model.enterprise.Enterprise ent : network.getEnterpriseList()) {
+             for (Organization org : ent.getOrganizationDirectory().getOrganizationList()) {
+                 if (org.getName().contains("Ambulance")) {
+                     return org;
+                 }
+             }
+         }
+         return null;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -129,7 +139,7 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         //update this code to specify to show only entries within the current role
-        RequestHistoryJPanel panel = new RequestHistoryJPanel (userProcessContainer, account);
+        RequestHistoryJPanel panel = new RequestHistoryJPanel(userProcessContainer, account, getAmbulanceOrg());
         userProcessContainer.add("RequestHistoryJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -137,24 +147,15 @@ public class AmbulanceWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnUpdateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStatusActionPerformed
         // TODO add your handling code here:
-        /*
-        process request but instead of changing status to done, change status 
-        to reflect progress. and still update this code to specify any role 
-        specific attributes on the process request page
-        */
-            
-        ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
+        ProcessRequestsJPanel panel = new ProcessRequestsJPanel(userProcessContainer, account, getAmbulanceOrg());
         userProcessContainer.add("ProcessRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-        
     }//GEN-LAST:event_btnUpdateStatusActionPerformed
 
     private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed
         // TODO add your handling code here:
-        
-        //update this code to specify to show only entries within the current role
-        ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
+        ViewRequestsJPanel panel = new ViewRequestsJPanel(userProcessContainer, account, getAmbulanceOrg());
         userProcessContainer.add("ViewRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

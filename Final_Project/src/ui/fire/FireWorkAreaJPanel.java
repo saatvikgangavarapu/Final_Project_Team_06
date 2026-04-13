@@ -6,10 +6,10 @@ package ui.fire;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import model.Network;
 import model.UserAccount;
-import ui.requests.ProcessRequestsJPanel;
-import ui.requests.RequestHistoryJPanel;
-import ui.requests.ViewRequestsJPanel;
+import model.enterprise.Enterprise;
+import model.organization.Organization;
 
 /**
  *
@@ -18,15 +18,19 @@ import ui.requests.ViewRequestsJPanel;
 public class FireWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
+    private Network network;
+
     
     /**
      * Creates new form FireWorkAreaJPanel
      */
-    public FireWorkAreaJPanel(JPanel userProcessContainer, UserAccount account) {
+    public FireWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Network network) {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
+        this.network = network;
         initComponents();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,7 +133,7 @@ public class FireWorkAreaJPanel extends javax.swing.JPanel {
     private void btnViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewRequestsActionPerformed
         // TODO add your handling code here:
         //update this code to specify to show only entries within the current role
-        ViewRequestsJPanel panel = new ViewRequestsJPanel (userProcessContainer, account);
+        ViewRequestsJPanel panel = new ViewRequestsJPanel(userProcessContainer, getFireOrg());
         userProcessContainer.add("ViewRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -138,7 +142,7 @@ public class FireWorkAreaJPanel extends javax.swing.JPanel {
     private void btnProcessRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessRequestActionPerformed
         // TODO add your handling code here:
         //update this code to specify any role specific attributes on the process request page
-        ProcessRequestsJPanel panel = new ProcessRequestsJPanel (userProcessContainer, account);
+        ProcessRequestsJPanel panel = new ProcessRequestsJPanel(userProcessContainer, account, getFireOrg());
         userProcessContainer.add("ProcessRequestsJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -147,7 +151,7 @@ public class FireWorkAreaJPanel extends javax.swing.JPanel {
     private void btnViewHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewHistoryActionPerformed
         // TODO add your handling code here:
         //update this code to specify to show only entries within the current role
-        RequestHistoryJPanel panel = new RequestHistoryJPanel (userProcessContainer, account);
+        RequestHistoryJPanel panel = new RequestHistoryJPanel(userProcessContainer, getFireOrg());
         userProcessContainer.add("RequestHistoryJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -160,6 +164,16 @@ public class FireWorkAreaJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
+    private Organization getFireOrg() {
+        for (model.enterprise.Enterprise ent : network.getEnterpriseList()) {
+            for (Organization org : ent.getOrganizationDirectory().getOrganizationList()) {
+                if (org.getName().contains("Fire")) {
+                    return org;
+                }
+            }
+        }
+        return null;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogOut;

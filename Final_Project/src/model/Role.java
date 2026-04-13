@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  */
 public abstract class Role {
     public abstract String getRoleName();
-    public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccount account);
+    public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network);
 
     @Override
     public String toString() {
