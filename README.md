@@ -1,4 +1,4 @@
-# Final_Project_Team_06
+# Smart Disaster Response System
 ## Group Members:
 Saatvik Gangavarapu - UID: 003987820 | Faculty Usecase<br>
 Sasha Johnson - UID: 003166524 | Admin Usecase <br>
